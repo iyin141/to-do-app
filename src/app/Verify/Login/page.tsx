@@ -42,7 +42,7 @@ const Login = () => {
         </form>
       </div>
       <div>
-        <p className="pt-3"><span className="text-[0.8rem] text-[#5E6282]">Don&apos;t Have an Account</span> <Link className=" underline text-[0.8rem] text-[#4475F2] " href='/'>Create an account</Link> </p>
+        <p className="pt-3"><span className="text-[0.8rem] text-[#5E6282]">Don&apos;t Have an Account</span> <Link className=" underline text-[0.8rem] text-[#4475F2] " href='/Verify/Signup'>Create an account</Link> </p>
       </div>
      </div>
   )
