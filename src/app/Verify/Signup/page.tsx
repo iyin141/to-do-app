@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import logo_2 from "../../img/logo_2.png"
 import Image from "next/image"
 import Link from "next/link"
-
+import { Create } from "@/app/Components/Send"
 
 type Formdata = {
     Firstname: string,
@@ -18,31 +18,31 @@ const Signup = () => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
   async function onsubmit(data: Formdata) {
-    console.log(data)
+    Create(data)
     reset();
   }
   return (
-    <div className="pl-12 pr-12 pt-6 pb-6 flex flex-col justify-center items-center  gap-5 ">
+    <div className="md:pl-12 md:pr-12 pt-6 pb-6 flex flex-col justify-center items-center  gap-5  ">
       <div className="pb-3">
         <Link href="/"><Image src={logo_2} className="w-[4rem]" alt="" /></Link>
       </div>
-      <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-7 border-t-2 border-[#607BFC] shadow-xl rounded-[5px] w-[70%]">
+      <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-7 border-t-2 border-[#607BFC] shadow-xl rounded-[5px] lg:w-[55%] md:w-[65%]">
         <h1 className="font-light text-[1rem]"><span className="text-[#607BFC]">Home</span> / Sign up</h1>
         <div className="pb-3">
           <h1 className="font-medium text-[1.2rem] pb-2">Create an Account</h1>
           <p className=" text-[0.8rem] text-[#5E6282]">Register your user info in the form below</p>
         </div>
         <form onSubmit={handleSubmit(onsubmit)}  >
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pb-8 " >
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 gap-x-6 pb-8  " >
             {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-5">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type='text' {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Email" : "Click to show password"} />
+            <input className=" text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[3px]"  type={field === "Password" ? "password" : field === "Email" ? "email" : 'text'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Email" : "Click to show password"} />
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}
           </div>
-          <button className="text-center bg-[#4475F2] text-white w-[100%] pt-2 pb-2 rounded-[5px]" > Login </button>
+          <button className="text-center bg-[#4475F2] text-white w-[100%] pt-2 pb-2 rounded-[5px]" > Create Account </button>
         </form>
       </div>
       <div>
