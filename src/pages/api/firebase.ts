@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile ,createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
 import  admin from 'firebase-admin';
 
 
@@ -50,7 +50,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 
 
-export const sign = async (email :string , password : string,name:string): Promise<string>  => { 
+export const sign = async (email :string , password : string,name:string): Promise<object | string>  => { 
   try {
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredentials.user;
@@ -58,7 +58,12 @@ export const sign = async (email :string , password : string,name:string): Promi
       displayName:name
     })
     
-    return "done";
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const token = await userCredential.user.getIdToken();
+    const decoded = await admin.auth().verifyIdToken(token);
+    
+    const data = { message: "done", value: token , name:name,uid:decoded.uid }
+    return data ;
   }
    catch (error: unknown) {
     if (error instanceof Error) {
@@ -68,4 +73,26 @@ export const sign = async (email :string , password : string,name:string): Promi
     return "An unknown error occurred";
   }
 }
+
+
+export const log = async (email :string , password : string): Promise<object | string>  => { 
+  try {  
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const token = await userCredential.user.getIdToken();
+    const decoded = await admin.auth().verifyIdToken(token);
+    const userRecord = await admin.auth().getUser(decoded.uid);
+    const name = await userRecord?.displayName
+
+    const data = { message: "done", value: token , uid:decoded.uid , name:name }
+    return data ;
+  }
+   catch (error: unknown) {
+    if (error instanceof Error) {
+      // Now TypeScript knows error has .message
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+}
+
 

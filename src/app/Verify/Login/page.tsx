@@ -3,20 +3,33 @@ import { useForm } from "react-hook-form"
 import logo_2 from "../../img/logo_2.png"
 import Image from "next/image"
 import Link from "next/link"
-
-
-type Formdata = {
-  Email: string,
-  Password:string
-}
+import { login } from "@/app/Components/Send"
+import { Formdata } from "@/app/Components/Send"
+import { useAuthStore } from "@/app/Components/Values"
+import { useRouter } from 'next/navigation'
+import { useState } from "react"
 
 const fields = ["Email", "Password"] as const;
 
 const Login = () => {
-
+   const setname = useAuthStore((s) => s.setname)
+    const setuid = useAuthStore((s) => s.setUid)
+  const settoken = useAuthStore((s) => s.setToken)
+  const router = useRouter()
+  const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
   async function onsubmit(data: Formdata) {
-    console.log(data)
+    const result = await login(data)
+     if (typeof result === 'string') {
+      settext(result)
+    }
+    else {
+      settext('')
+      setuid(result?.uid)
+      setname(result?.name)
+       settoken(result?.value)
+      router.push('/Task')
+    }
     reset();
   }
   return (
@@ -38,6 +51,7 @@ const Login = () => {
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}
+          <p className="pb-5"> {text}</p>
           <button className="text-center bg-[#4475F2] text-white w-[100%]  pt-2 pb-2 rounded-[5px]" > Login </button>
         </form>
       </div>

@@ -5,27 +5,31 @@ import Image from "next/image"
 import Link from "next/link"
 import { Create } from "@/app/Components/Send"
 import { useState } from "react"
-
-type Formdata = {
-    Firstname: string,
-    Lastname:string,
-  Email: string,
-  Password:string
-}
+import { useAuthStore } from "@/app/Components/Values"
+import { useRouter } from 'next/navigation'
+import { Formdata } from "@/app/Components/Send"
 
 const fields = ["Firstname","Lastname","Email", "Password"] as const;
 
 const Signup = () => {
+  const setname = useAuthStore((s) => s.setname)
+  const setuid = useAuthStore((s) => s.setUid)
+  const settoken = useAuthStore((s) => s.setToken)
+  const router = useRouter()
   const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
   async function onsubmit(data: Formdata) {
     settext('')
     const result = await Create(data)
-    if (result !== 'done') {
+    if (typeof result === 'string') {
       settext(result)
     }
     else {
       settext('')
+      setuid(result?.uid)
+      setname(result?.name)
+      settoken(result?.value)
+      router.push('/Task')
     }
     reset();
   }
