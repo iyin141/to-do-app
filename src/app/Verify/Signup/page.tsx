@@ -4,6 +4,7 @@ import logo_2 from "../../img/logo_2.png"
 import Image from "next/image"
 import Link from "next/link"
 import { Create } from "@/app/Components/Send"
+import { useState } from "react"
 
 type Formdata = {
     Firstname: string,
@@ -15,10 +16,17 @@ type Formdata = {
 const fields = ["Firstname","Lastname","Email", "Password"] as const;
 
 const Signup = () => {
-
+  const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
   async function onsubmit(data: Formdata) {
-    Create(data)
+    settext('')
+    const result = await Create(data)
+    if (result !== 'done') {
+      settext(result)
+    }
+    else {
+      settext('')
+    }
     reset();
   }
   return (
@@ -42,6 +50,7 @@ const Signup = () => {
            </div>
           ))}
           </div>
+          <p className="pb-5"> {text}</p>
           <button className="text-center bg-[#4475F2] text-white w-[100%] pt-2 pb-2 rounded-[5px]" > Create Account </button>
         </form>
       </div>

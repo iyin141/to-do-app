@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import  admin from 'firebase-admin';
 
 
@@ -23,11 +23,12 @@ const serviceAccount = {
 
 
 
-  try {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-  });
-    
+try {
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    });
+  }
 } catch (error) {
   console.error("Firebase Admin init failed:", error);
 }
@@ -49,11 +50,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 
-export const Create = async (email :string , password : string): Promise<string>  => { 
+export const sign = async (email :string , password : string,name:string): Promise<string>  => { 
   try {
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredentials.user;
-    console.log(user)
+    await updateProfile(user, {
+      displayName:name
+    })
+    
     return "done";
   }
    catch (error: unknown) {
