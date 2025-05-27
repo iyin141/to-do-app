@@ -28,7 +28,7 @@ const Login = () => {
       setuid(result?.uid)
       setname(result?.name)
        settoken(result?.value)
-      router.push('/Task')
+      router.push('/Task/Main')
     }
     reset();
   }

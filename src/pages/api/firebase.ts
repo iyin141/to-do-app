@@ -95,4 +95,21 @@ export const log = async (email :string , password : string): Promise<object | s
   }
 }
 
-
+export const verify = async (token:string): Promise<string>  => { 
+  try {  
+    
+    const result = await admin.auth().verifyIdToken(token);
+    let value ='';
+    if (typeof result === 'object' ) {
+      value = "done"
+    }
+    return value
+  }
+   catch (error: unknown) {
+    if (error instanceof Error) {
+      // Now TypeScript knows error has .message
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+}

@@ -1,3 +1,4 @@
+'use client';
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Formdata } from "./Send";
@@ -17,6 +18,8 @@ type AuthStore = {
   id: string;
   task_edit: string;
   date_edit: string;
+   rehydrated: boolean; // ✅ add this
+  setRehydrated: (v: boolean) => void;
   setname: (uid: string) => void;
   setUid: (uid: string) => void;
   setToken: (token: string) => void;
@@ -51,6 +54,7 @@ export const useAuthStore = create<AuthStore>()(
       id: '',
       task_edit: '',
       date_edit: '',
+      
       setname:(name) => set({name}),
       setUid: (uid) => set({ uid }),
       setToken: (token) => set({ token }),
@@ -65,6 +69,8 @@ export const useAuthStore = create<AuthStore>()(
       setId: (id) => set({ id }),
       setTaskEdit: (task_edit) => set({ task_edit }),
       setDateEdit: (date_edit) => set({ date_edit }),
+      rehydrated: false,
+      setRehydrated: (v) => set({ rehydrated: v }),
       logout: () =>
         set({
           uid: "",
@@ -84,6 +90,10 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: "auth-storage",
+      onRehydrateStorage: () => (state) => {
+        // Custom flag to indicate rehydration has completed
+        state?.setRehydrated?.(true);
+      },
     }
   )
 );

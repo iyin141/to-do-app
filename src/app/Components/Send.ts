@@ -36,3 +36,17 @@ export async function login(data: Formdata) {
   return result
   
 }
+
+export async function verify(token:string) {
+  const response = await fetch('/api/Verify', { 
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json',
+    },
+    body: JSON.stringify({token}),
+  })
+
+  const result = response.json()
+  return result
+  
+}
