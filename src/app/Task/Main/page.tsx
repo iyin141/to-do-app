@@ -18,16 +18,16 @@ const Main = () => {
     if (token !== '') {
     const result = await verify(token)
       if (result !== 'done') {
-        router.push('/')
+        router.push('/Verify/Login')
         logout()
     }
     } else {
-      router.push('/')
+      router.push('/Verify/Login')
       logout()
   }
   }
   check()
-  },[token])
+  },[token,rehydrated])
  
 
   return (

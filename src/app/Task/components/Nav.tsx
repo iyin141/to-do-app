@@ -20,7 +20,7 @@ const Nav = () => {
       <div >
         <Link href='/'><Image src={logo_2} className="h-[38px] w-auto " alt="" /></Link>
       </div>
-     <span className={` ${inter.className} pt-2   font-bold tracking-wide`}> < button onClick={() => logout()} >Logout</button></span>
+     <span className={` ${inter.className} pt-2   font-bold tracking-wide`}> <button onClick={() => logout()} >Logout</button></span>
     </div> 
   )
 }
