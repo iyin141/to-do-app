@@ -15,6 +15,9 @@ import Link from 'next/link'
 
 const Nav = () => {
   const logout = useAuthStore((s) => s.logout)
+  const rehydrated = useAuthStore((s) => s.rehydrated); 
+
+  if (!rehydrated) return null; 
   return (
      <div className="flex justify-between pb-3  gap-5 pt-5 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-8 shadow-sm" >
       <div >
