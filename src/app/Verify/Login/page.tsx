@@ -40,7 +40,7 @@ const Login = () => {
       <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-8 border-t-2 border-[#607BFC] shadow-xl rounded-[5px] w-[100%] md:w-[60%] lg:w-[40%] xl:w-[35%] ">
         <h1 className="font-light text-[1rem]"><span className="text-[#607BFC]">Home</span> / Login</h1>
         <div className="pb-3">
-          <h1 className="font-medium text-[1.2rem] pb-2">Login</h1>
+          <h1 className="font-medium text-[1.2rem] pb-2">Logout</h1>
           <p className=" text-[0.8rem] text-[#5E6282]">Input your email and password.</p>
         </div>
         <form onSubmit={handleSubmit(onsubmit)} >
