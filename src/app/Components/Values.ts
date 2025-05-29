@@ -18,7 +18,7 @@ type AuthStore = {
   id: string;
   task_edit: string;
   date_edit: string;
-   rehydrated: boolean; // ✅ add this
+   rehydrated: boolean; 
   setRehydrated: (v: boolean) => void;
   setname: (uid: string) => void;
   setUid: (uid: string) => void;
