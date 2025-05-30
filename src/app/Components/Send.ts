@@ -50,3 +50,31 @@ export async function verify(token:string) {
   return result
   
 }
+
+export async function NewTask(data:Formdata) {
+  const response = await fetch('/api/NewTask', { 
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  const result = response.json()
+  return result
+  
+}
+
+export async function FetchTask(uid:string) {
+  const response = await fetch('/api/FetchTask', { 
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json',
+    },
+    body: JSON.stringify({uid}),
+  })
+
+  const result = response.json()
+  return result
+  
+}

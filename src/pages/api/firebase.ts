@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { initializeApp } from "firebase/app";
-import { getAuth, updateProfile ,createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, } from "firebase/auth";
+import { getDatabase , ref, set ,push,query,get  } from "firebase/database";
 import  admin from 'firebase-admin';
 
 
@@ -21,6 +22,16 @@ const serviceAccount = {
 }
 ;
 
+
+interface Task {
+  title: string;
+  completed: boolean;
+  timestamp: number;
+}
+
+interface TaskLogEntry {
+  task: Task;
+}
 
 
 try {
@@ -67,12 +78,13 @@ export const sign = async (email :string , password : string,name:string): Promi
   }
    catch (error: unknown) {
     if (error instanceof Error) {
-      // Now TypeScript knows error has .message
       return error.message;
     }
     return "An unknown error occurred";
   }
 }
+
+
 
 
 export const log = async (email :string , password : string): Promise<object | string>  => { 
@@ -88,7 +100,6 @@ export const log = async (email :string , password : string): Promise<object | s
   }
    catch (error: unknown) {
     if (error instanceof Error) {
-      // Now TypeScript knows error has .message
       return error.message;
     }
     return "An unknown error occurred";
@@ -107,9 +118,55 @@ export const verify = async (token:string): Promise<string>  => {
   }
    catch (error: unknown) {
     if (error instanceof Error) {
-      // Now TypeScript knows error has .message
       return error.message;
     }
     return "An unknown error occurred";
   }
 }
+
+export const Log_task = async (Task:string , Date:string,Uid:string ) => {
+  try {
+    const db = getDatabase();
+    const postListRef = ref(db, 'Tasklogs/' + Uid + '/' + 'Userlogs' );
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
+      task:{Task,Date}
+});
+    return {message:'done'};
+  }
+  catch (error: unknown) {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+} 
+
+export const Fetch_task = async (Uid:string) => {
+  try {
+    const db = getDatabase();
+    const userTaskRef = query(
+      ref(db,  'Tasklogs/' + Uid + '/' + 'Userlogs')
+    );
+
+    const snapshot = await get(userTaskRef);
+
+    if (snapshot.exists()) {
+      const rawData = snapshot.val() as Record<string, TaskLogEntry>;
+      const taskList = Object.entries(rawData).map(([key, value]) => ({
+        id: key, 
+        ...value.task, 
+      }));
+      return taskList;
+    } else {
+      console.log("No data found");
+      return 'no data';
+    }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+};
+

@@ -15,6 +15,7 @@ const Login = () => {
    const setname = useAuthStore((s) => s.setname)
     const setuid = useAuthStore((s) => s.setUid)
   const settoken = useAuthStore((s) => s.setToken)
+  const setcount = useAuthStore((s) => s.setcount)
   const router = useRouter()
   const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
@@ -28,6 +29,7 @@ const Login = () => {
       setuid(result?.uid)
       setname(result?.name)
        settoken(result?.value)
+       setcount(0)
       router.push('/Task/Main')
     }
     reset();

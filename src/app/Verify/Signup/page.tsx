@@ -16,6 +16,7 @@ const Signup = () => {
   const setuid = useAuthStore((s) => s.setUid)
   const settoken = useAuthStore((s) => s.setToken)
   const router = useRouter()
+  const setcount = useAuthStore((s) => s.setcount)
   const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
   async function onsubmit(data: Formdata) {
@@ -29,6 +30,7 @@ const Signup = () => {
       setuid(result?.uid)
       setname(result?.name)
       settoken(result?.value)
+      setcount(0)
       router.push('/Task/Main')
     }
     reset();

@@ -17,7 +17,7 @@ const Main = () => {
   useEffect(() => {
     if (!rehydrated) return;
   async function check() {
-    console.log(token)
+   
     if (token !== '') {
     const result = await verify(token)
       if (result !== 'done') {
@@ -35,7 +35,7 @@ const Main = () => {
 
   return (
     <div className='relative pt-12 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 flex flex-col gap-12 justify-center items-center min-h-screen'>
-       <div className={`${toggle ? 'z-20 absolute  text-center h-[100vh] w-[100%]  ' : 'hidden'}`}>
+       <div className={`${toggle ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
         <Form />
       </div>
       <div className={`${toggle ? ' pt-12 w-[100%] flex flex-col justify-center items-center z-10 absolute gap-[5rem]   opacity-10 ' : '  w-[100%] flex flex-col justify-center items-center gap-12 '}`}>

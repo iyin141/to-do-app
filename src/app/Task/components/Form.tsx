@@ -1,16 +1,30 @@
 "use client"
 import { useForm } from "react-hook-form"
-import { Formdata } from "@/app/Components/Send"
+import { Formdata, NewTask } from "@/app/Components/Send"
 import { useAuthStore } from "@/app/Components/Values";
 import { X } from 'lucide-react';
 
 const fields = ["Task", "Date"] as const;
 
 const Login = () => {
+  const setcount = useAuthStore((s) => s.setcount)
+   const now = new Date();
+  const formatDateTime = (date: Date) => {
+    return date.toISOString().slice(0, 16);
+  };
    const settoggle = useAuthStore((s) => s.settoggle)
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
+  const uid = useAuthStore((s) => s.uid)
   async function onsubmit(data: Formdata) {
-    console.log(data)
+    data.Uid = uid;
+    const result = await NewTask(data)
+    if (result.message !== 'done') {
+      alert(result.message)
+    } 
+    else {
+      settoggle(false)
+      setcount(0) 
+    }
     reset()
   }
   return (
@@ -25,7 +39,7 @@ const Login = () => {
           {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-8">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type={field === 'Task' ? 'text' : 'datetime-local'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Task" ? "Task" : "Date"} />
+            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type={field === 'Task' ? 'text' : 'datetime-local'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Task" ? "Task" : "Date"} min={formatDateTime(now)}  />
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}
