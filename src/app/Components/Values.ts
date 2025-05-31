@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 import { Formdata } from "./Send";
 
 type AuthStore = {
+  search:string
   name:string
   uid: string;
   token: string;
@@ -18,7 +19,8 @@ type AuthStore = {
   id: string;
   task_edit: string;
   date_edit: string;
-   rehydrated: boolean; 
+  rehydrated: boolean;
+  setsearch: (search: string) => void
   setRehydrated: (v: boolean) => void;
   setname: (uid: string) => void;
   setUid: (uid: string) => void;
@@ -40,12 +42,13 @@ type AuthStore = {
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
-      name:"",
+      search:"",
+      name: "",
       uid: "",
       token: "",
       toggle: false,
       toggle_2: false,
-      toggle_3: false,
+      toggle_3: true,
       tasks: [], // not in use
       tasks_2: [],
       count: 0,
@@ -54,7 +57,7 @@ export const useAuthStore = create<AuthStore>()(
       id: '',
       task_edit: '',
       date_edit: '',
-      
+      setsearch:(search) => set ({search}),
       setname:(name) => set({name}),
       setUid: (uid) => set({ uid }),
       setToken: (token) => set({ token }),
