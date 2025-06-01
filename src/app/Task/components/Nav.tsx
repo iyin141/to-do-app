@@ -17,9 +17,10 @@ const Nav = () => {
   const logout = useAuthStore((s) => s.logout)
   const rehydrated = useAuthStore((s) => s.rehydrated); 
   const toggle = useAuthStore((s) => s.toggle)
+  const toggle_2 = useAuthStore((s) => s.toggle_2)
   if (!rehydrated) return null; 
   return (
-    <div className={`${toggle ? 'opacity-10' : ''}`}>
+    <div className={`${toggle || toggle_2 ? 'opacity-10' : ''}`}>
        <div className="flex justify-between pb-5 items-center  gap-5 pt-5 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-8 shadow-sm " >
       <div >
         <Link href='/'><Image src={logo_2} className="h-[38px] w-auto " alt="" /></Link>

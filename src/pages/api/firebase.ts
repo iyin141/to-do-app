@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { initializeApp } from "firebase/app";
 import { getAuth, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, } from "firebase/auth";
-import { getDatabase , ref, set ,push,query,get  } from "firebase/database";
+import { getDatabase , ref, set ,push,query,get  ,remove,update} from "firebase/database";
 import  admin from 'firebase-admin';
 
 
@@ -170,3 +170,42 @@ export const Fetch_task = async (Uid:string) => {
   }
 };
 
+export const delete_task = async (Uid:string,id:string,) => {
+  try {
+    const db = getDatabase();
+    const userpath = 'Tasklogs/' + Uid + '/' + 'Userlogs/' + id 
+    remove(ref(db,userpath))
+    return { message: 'Task deleted' }
+  }
+  catch (error: unknown) {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+   
+};
+
+
+export const update_task = async (Uid:string,id:string,task:string,date:string) => {
+  try {
+    const db = getDatabase();
+    const userpath = 'Tasklogs/' + Uid + '/' + 'Userlogs/' + id 
+
+    const postData = {
+      task:{Task: task, Date:date}
+  };
+
+      await update(ref(db,userpath),postData)
+       
+    return {Task: task, Date:date , message:'done'};
+
+
+  }
+   catch (error: unknown) {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return "An unknown error occurred";
+  }
+};

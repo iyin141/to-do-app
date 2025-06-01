@@ -31,11 +31,11 @@ const Display = () => {
   
 
   return (
-    <div className='flex flex-col  w-[70%] gap-5 pb-5' >
+    <div className='flex flex-col  xl:w-[80%] lg:w-[90%] gap-5 pb-5' >
       <h1 className='text-[1.2rem] font-bold text-[#607BFC]   '>Recents</h1>
       <div className=' flex flex-col gap-12  shadow-md bg-[#fcfcfc] h-contain border-1 border-[#F3EFEE]  pt-8 pl-8 pr-8 pb-12 overflow-hidden'>
-        <div className='pl-[90%]'>
-          <button className=' h-[40px] bg-[#393433] w-[70px] text-center text-white rounded-[10px] ' onClick={() => { settoggle(true)}}>Add</button>
+        <div className='pl-[92%] max-sm:pl-[80%]'>
+          <button className=' h-[40px] bg-[#393433] w-[70px]   text-center text-white rounded-[10px] ' onClick={() => { settoggle(true)}}>Add</button>
         </div>
         <div>
           <Search />
@@ -48,7 +48,7 @@ const Display = () => {
                 <h1>Due: {t.Date}</h1>
               </div>
               <div>
-                   <More />
+                   <More id={t.id} Task={t.Task } Date={t.Date} />
               </div>
             </div>
           ))}

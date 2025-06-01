@@ -78,3 +78,31 @@ export async function FetchTask(uid:string) {
   return result
   
 }
+
+export async function RemoveTask(uid:string, id:string) {
+  const response = await fetch('/api/RemoveTask', { 
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json',
+    },
+    body: JSON.stringify({uid ,id}),
+  })
+
+  const result = response.json()
+  return result
+  
+}
+
+export async function EditTask(data:Formdata) {
+  const response = await fetch('/api/EditTask', { 
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  const result = response.json()
+  return result
+  
+}
