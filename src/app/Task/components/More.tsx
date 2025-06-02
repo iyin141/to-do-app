@@ -26,7 +26,7 @@ const [Display, setDisplay] = useState(false)
           <button onClick={() =>  Display ? setDisplay(false) : setDisplay(true) }><MoreVertical /></button>
           <div className={`${toggle_3 ? 'pl-4' : 'hidden'}`}  >
               <div className={`${Display ? ' w-[65px] p-2 bg-[#E6E3E3] h-[60px] text-[1rem] flex flex-col  font-light   shadow-md  absolute' : 'hidden'}`}>
-          <h1 onClick={() => { setdate_Edit(Date); settask_edit(Task); setid(id); settoggle_2(true) }}>Edit</h1>
+          <h1 onClick={() => { setdate_Edit(Date); settask_edit(Task); setid(id); settoggle_2(true) }}>EdIt</h1>
                <h1 onClick={() => { RemoveTask(uid, id); setcount(0) }}>Delete</h1>
               </div>
           </div>
