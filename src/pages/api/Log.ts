@@ -5,12 +5,13 @@ import { log } from './firebase';
 
 
 export default async function Log(req:NextApiRequest,res:NextApiResponse) {
-    if (req.method === 'POST') {
-        const data:Formdata = req.body;
-        const result = await log(data.Email, data.Password)
-        res.json(result)
+  if (req.method !== 'POST') {
+        res.setHeader('Allow', ['POST']);
+        res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+        
     }
 
-    res.setHeader('Allow', ['POST']);
-  res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+       const data:Formdata = req.body;
+        const result = await log(data.Email, data.Password)
+        res.json(result)
 }

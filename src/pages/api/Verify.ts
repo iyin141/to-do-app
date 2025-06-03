@@ -4,12 +4,12 @@ import { verify} from './firebase';
 
 
 export default async function Verify(req:NextApiRequest,res:NextApiResponse) {
-    if (req.method === 'POST') {
+    if (req.method !== 'POST') {
+            res.setHeader('Allow', ['POST']);
+            res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+    }
         const {token} = req.body;
         const result = await verify(token)
         res.json(result)
-    }
 
-    res.setHeader('Allow', ['POST']);
-  res.status(405).json({ message: `Method ${req.method} Not Allowed` });
 }

@@ -1,8 +1,11 @@
+'use client'
 import { Inter } from 'next/font/google'
 import Nav from "./Nav/page";
 import Link from 'next/link'
 import Image from 'next/image';
 import hero_3 from "../../src/app/img/hero_3.png"
+import { useEffect } from 'react';
+import { useAuthStore } from './Components/Values';
 
   const inter = Inter({
   subsets: ['latin'],
@@ -12,6 +15,10 @@ import hero_3 from "../../src/app/img/hero_3.png"
 
 
 const Home = () => {
+  const logout = useAuthStore((s) => s.logout)
+useEffect(() => {
+  logout()
+}, []);
 
   return (
     <div className={` ${inter.className}  xl:bg-[url('./img/hero.png')] md:bg-[url('./img/hero_2.png')] xl:bg-contain bg-cover  bg-no-repeat xl:h-[100vh]  bg-top xl:bg-right max-sm:h-[80%]    `}>

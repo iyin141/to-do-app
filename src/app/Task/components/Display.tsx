@@ -21,9 +21,12 @@ const Display = () => {
       async function call() {
     const result = await FetchTask(uid)
         if (result !== 'no data') {
-      settask_2(result)
-      setcount(1)
-    }
+          settask_2(result)
+          setcount(1)
+        } else {
+          setcount(1)
+         }
+
   }
   call()
    }

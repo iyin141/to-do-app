@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuthStore } from '@/app/Components/Values'
 
@@ -12,7 +12,9 @@ const Search = () => {
     const result = watch("item","")
     const setsearch = useAuthStore((s) => s.setsearch)
 
-    setsearch(result)
+    useEffect(() => {
+        setsearch(result)
+   })
     
   return (
       <div>

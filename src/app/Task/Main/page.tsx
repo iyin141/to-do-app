@@ -10,6 +10,7 @@ import Edit from '../components/Edit'
 
 
 const Main = () => {
+  
   const toggle_2 = useAuthStore((s) => s.toggle_2)
   const toggle = useAuthStore((s) => s.toggle)
   const token = useAuthStore((s) => s.token)

@@ -32,6 +32,8 @@ const Signup = () => {
       settoken(result?.value)
       setcount(0)
       router.push('/Task/Main')
+      
+
     }
     reset();
   }
