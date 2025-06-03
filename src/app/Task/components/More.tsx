@@ -21,7 +21,7 @@ const toggle_3 = useAuthStore((s) => s.toggle_3)
 const settoggle_3 = useAuthStore((s) => s.settoggle_3)
 const [Display, setDisplay] = useState(false)
 
-  async function del(uid:string,id:string) {
+  async function del(uid: string, id: string) {
     const result = await RemoveTask(uid, id);
     console.log(result)
     setcount(0)

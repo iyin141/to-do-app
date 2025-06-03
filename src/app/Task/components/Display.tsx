@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react'
+import React, {  useEffect,useState } from 'react'
 import { useAuthStore } from '@/app/Components/Values'
 import { FetchTask } from '@/app/Components/Send'
 import More from './More'
@@ -8,6 +8,7 @@ import Search from './Search'
 const Display = () => {
   const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const task_style = 'grid grid-cols-[95%_10%] border-b-1 pb-4 border-[#e6e3e3] gap-5   pr-2 '
+  const [show, setshow] = useState(false)
   const search = useAuthStore((s) => s.search)
   const settoggle_3 = useAuthStore((s) => s.settoggle_3)
   const settoggle = useAuthStore((s) => s.settoggle)
@@ -23,10 +24,13 @@ const Display = () => {
         if (result !== 'no data') {
           settask_2(result)
           setcount(1)
+          setshow(false)
         } else {
           setcount(1)
+          settask_2([])
+          setshow(true)
          }
-
+       console.log(count)
   }
   call()
    }
@@ -56,6 +60,7 @@ const Display = () => {
             </div>
           ))}
         </div>
+        <p className={`${show ? 'text-center font-light text-[1.2rem]' : 'hidden'}`}>Add a task to display here</p>
       </div>
     </div>
   )
