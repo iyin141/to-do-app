@@ -1,4 +1,5 @@
 "use client"
+import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form"
 import logo_2 from "../../img/logo_2.png"
 import Image from "next/image"
@@ -55,7 +56,10 @@ const Login = () => {
           {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-8">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type={field === 'Email' ? 'text' : show ? 'text' : 'password'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Enter your email" : "Click to show password"} onClick={()=> show ? setshow(false) : setshow(true)} />
+              <div className="flex relative w-[100%]">
+                 <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]" type={field === 'Email' ? 'text' : show ? 'text' : 'password'} {...register(field, { required: `${field} is required` })} placeholder={field === "Email" ? "Enter your email" : "Click to show password"} />
+               <button className={`${field === 'Password' ? 'absolute pt-3  max-sm:pl-[88%] md:pl-[90%] lg:pl-[90%] ' : 'hidden'}`} onClick={() => show ? setshow(false) : setshow(true)}> {show ? <Eye /> : <EyeOff />}</button>
+             </div>
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}
