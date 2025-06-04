@@ -30,7 +30,7 @@ const Display = () => {
           settask_2([])
           setshow(true)
          }
-       console.log(count)
+       
   }
   call()
    }

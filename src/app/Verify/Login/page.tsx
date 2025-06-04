@@ -8,6 +8,7 @@ import { Formdata } from "@/app/Components/Send"
 import { useAuthStore } from "@/app/Components/Values"
 import { useRouter } from 'next/navigation'
 import { useState } from "react"
+import { Check } from "@/app/Components/Check"
 
 const fields = ["Email", "Password"] as const;
 
@@ -19,6 +20,7 @@ const Login = () => {
   const router = useRouter()
   const [text, settext] = useState('')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Formdata>();
+   
   async function onsubmit(data: Formdata) {
     const result = await login(data)
      if (typeof result === 'string') {
@@ -34,8 +36,11 @@ const Login = () => {
     }
     reset();
   }
+
+
   return (
     <div className="pl-12 pr-12 pt-6 pb-6 flex flex-col justify-center items-center  gap-5 ">
+      <Check />
       <div className="pb-3">
         <Link href="/"><Image src={logo_2} className="w-[4rem]" alt="" /></Link>
       </div>

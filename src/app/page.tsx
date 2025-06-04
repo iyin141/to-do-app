@@ -6,6 +6,7 @@ import Image from 'next/image';
 import hero_3 from "../../src/app/img/hero_3.png"
 import { useEffect } from 'react';
 import { useAuthStore } from './Components/Values';
+import { verify } from './Components/Send';
 
   const inter = Inter({
   subsets: ['latin'],
@@ -16,9 +17,17 @@ import { useAuthStore } from './Components/Values';
 
 const Home = () => {
   const logout = useAuthStore((s) => s.logout)
-useEffect(() => {
-  logout()
-}, []);
+  const token = useAuthStore((s) => s.token)
+  useEffect(() => {
+   async function run() {
+     const result = await verify(token)
+     if (result !== 'done' || token === '') {
+       logout()
+       console.log(token)
+     }
+   }
+     run()
+}, [token]);
 
   return (
     <div className={` ${inter.className}  xl:bg-[url('./img/hero.png')] md:bg-[url('./img/hero_2.png')] xl:bg-contain bg-cover  bg-no-repeat xl:h-[100vh]  bg-top xl:bg-right max-sm:h-[80%]    `}>
