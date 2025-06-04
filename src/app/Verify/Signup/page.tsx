@@ -12,6 +12,7 @@ import { Formdata } from "@/app/Components/Send"
 const fields = ["Firstname","Lastname","Email", "Password"] as const;
 
 const Signup = () => {
+   const [show, setshow] = useState(false)
   const setname = useAuthStore((s) => s.setname)
   const setuid = useAuthStore((s) => s.setUid)
   const settoken = useAuthStore((s) => s.setToken)
@@ -53,7 +54,7 @@ const Signup = () => {
             {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-5">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className=" text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[3px]"  type={field === "Password" ? "password" : field === "Email" ? "email" : 'text'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Email" : "Click to show password"} />
+            <input className=" text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[3px]"  type={field === "Password" ? show ? 'text' :"password" : field === "Email" ? "email" : 'text'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Email" : "Click to show password"} onClick={()=> show ? setshow(false) : setshow(true)} />
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}

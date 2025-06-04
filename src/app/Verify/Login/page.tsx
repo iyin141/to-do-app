@@ -13,6 +13,7 @@ import { Check } from "@/app/Components/Check"
 const fields = ["Email", "Password"] as const;
 
 const Login = () => {
+  const [show, setshow] = useState(false)
    const setname = useAuthStore((s) => s.setname)
     const setuid = useAuthStore((s) => s.setUid)
   const settoken = useAuthStore((s) => s.setToken)
@@ -54,7 +55,7 @@ const Login = () => {
           {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-8">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type='text' {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Email" : "Click to show password"} />
+            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type={field === 'Email' ? 'text' : show ? 'text' : 'password'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Email" ? "Enter your email" : "Click to show password"} onClick={()=> show ? setshow(false) : setshow(true)} />
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}
