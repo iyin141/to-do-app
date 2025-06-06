@@ -14,7 +14,7 @@ const link_style = 'flex flex-col w-[90px] rounded-[5px] h-[35px]  text-center j
 
 const Nav = () => {
   return (
-     <div className="flex justify-between  md:pt-4 md:pb-3 pt-5  bg-[#F5F7FA] md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-5  " >
+     <div className="flex justify-between  md:pt-4 md:pb-3 pt-5  bg-[#F5F7FA] border-b-1 border-[#e7e7e7] md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-5  " >
       <div className={`  ${inter.className} flex  `}>
         <Image src={logo} className="w-[30px] h-[30px] " alt="" />
         <h1 className='font-bold text-[1.2rem] text-[#263238]'>To-Do </h1>

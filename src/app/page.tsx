@@ -53,7 +53,7 @@ const Home = () => {
       </style>
 
 
-      <div className=' bg-[#ABBED1] pb-12 flex flex-col  w-[100%] gap-12 '>
+      <div className=' bg-[#F5F7FA] pb-12 flex flex-col  w-[100%] gap-12 '>
         <Nav />
         <div  className='md:pt-12 flex  max-sm:justify-center max-sm:flex-col-reverse gap-12 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-8  '>
           <div className='md:w-[55%] flex flex-col gap-8'>
