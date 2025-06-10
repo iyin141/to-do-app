@@ -1,7 +1,7 @@
 "use client"
 import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form"
-import logo_2 from "../../img/logo_2.png"
+import logo_2 from "../../img/logo_3.png"
 import Image from "next/image"
 import Link from "next/link"
 import { login } from "@/app/Components/Send"
