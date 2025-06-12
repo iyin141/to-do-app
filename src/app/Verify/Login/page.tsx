@@ -58,7 +58,7 @@ const Login = () => {
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
               <div className="flex relative w-[100%]">
                  <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]" type={field === 'Email' ? 'text' : show ? 'text' : 'password'} {...register(field, { required: `${field} is required` })} placeholder={field === "Email" ? "Enter your email" : "Click to show password"} />
-               <button className={`${field === 'Password' ? 'absolute pt-3  max-sm:pl-[88%] md:pl-[90%] lg:pl-[90%] ' : 'hidden'}`} onClick={() => show ? setshow(false) : setshow(true)}> {show ? <Eye /> : <EyeOff />}</button>
+               <button className={`${field === 'Password' ? 'absolute pt-3  max-sm:pl-[88%] md:pl-[90%] lg:pl-[90%]  ' : 'hidden'}`} onClick={() => show ? setshow(false) : setshow(true)}> {show ? <Eye /> : <EyeOff />}</button>
              </div>
             {errors[field] && <p>{errors[field].message}</p>}
            </div>

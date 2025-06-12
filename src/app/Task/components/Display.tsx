@@ -47,7 +47,7 @@ const Display = () => {
         <div>
           <Search />
         </div>
-        <div className='flex flex-col gap-12'>
+        <div className='flex flex-col-reverse gap-12'>
           {task.map((t) => (
             <div key={t.id} className={ `${[...clean(String(t.Task))].some(char => clean(search).includes(char)) ? task_style : search === '' ? task_style : 'hidden'}`}>
               <div className='flex justify-between flex-wrap gap-5 text-center pt-1   ' onClick={()=> settoggle_3(false)}>

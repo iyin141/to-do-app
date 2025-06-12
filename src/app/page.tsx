@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { useAuthStore } from './Components/Values';
 import { verify } from './Components/Send';
 import Main from './Components/Hero/page';
-import About from './Components/About/About';
 import Template from './Components/Template/Template';
 
   const inter = Inter({
@@ -34,13 +33,10 @@ const Home = () => {
 
   return (
     <div className={` ${inter.className}  overflow-x-hidden bg-[#FFFFFF]`}>
-      <div className='  pb-12 flex flex-col w-[100%] gap-[8rem]  '>
+      <div className='  pb-12 flex flex-col w-[100%] md:gap-[8rem] max-sm:gap-12  '>
         <Nav />
         <div className='w-[99%]  flex justify-center lg:pt-[8%] md:pt-[12%]   '>
           <Main />
-        </div>
-        <div>
-          <About />
         </div>
         <div>
           <Template />
