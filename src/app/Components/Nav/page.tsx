@@ -23,7 +23,7 @@ const Nav = () => {
   return (
     <div className={`${inter.className} flex flex-col gap-3 w-[100%] text-[#363C46] z-10 bg-[#FFFFFF] md:fixed shadow-md  `}>
       <div>
-        <p className='font-semibold text-center max-sm:[0.7rem] max-sm:font-light'>Embark on a productivity and time-management journey with to-do app!</p>
+        <p className='font-semibold text-center max-sm:[0.7rem] max-sm:font-light max-sm:pt-1'>Embark on a productivity and time-management journey with to-do app!</p>
       </div>
       <span className='w-[100vw] border-b  border-[#E6E7E9]'></span>
       <div className='flex pl-12 pr-12 max-sm:pl-0 max-sm:pr-4 justify-between '>
