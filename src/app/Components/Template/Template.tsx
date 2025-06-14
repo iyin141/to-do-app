@@ -14,7 +14,7 @@ const Template = () => {
   
   const settask = useAuthStore((s => s.setTempTask))
   const setdate = useAuthStore((s) => s.setTempDate)
-
+  const token = useAuthStore((s) => s.token)
 
   return (
       <div className='w-[100%] pl-[5%] pr-[5%] flex flex-col gap-12'>
@@ -25,7 +25,7 @@ const Template = () => {
             <h1><span className='text-[#582066] font-semibold text-[2rem]'>{info.percent}</span> <span className='text-[#919090]'>% of users have this task</span></h1>
             <h2 className='text-[1.2rem] max-sm:text-[1rem] text-[#363C46] font-bold'>{info.task}</h2>
             <p className='text-[#9a9ca0] text-[1rem] font-light'>{info.date}</p>
-            <button className='self-start pt-4 text-[#9a9ca0] hover:text-black hover:mt-1 text-[1rem]' onClick={() => { setdate(info.date); settask(info.task) } }><Link href='Verify/Signup'>Add now</Link></button>
+            <button className='self-start pt-4 text-[#9a9ca0] hover:text-black hover:mt-1 text-[1rem]' onClick={() => { setdate(info.date); settask(info.task) } }><Link href={token == '' ? 'Verify/Signup' : 'Verify/Login'}>Add now</Link></button>
           </div>
              ))}
           </div>

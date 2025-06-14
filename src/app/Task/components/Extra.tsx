@@ -3,6 +3,7 @@ import { useAuthStore } from '@/app/Components/Values'
 import { Formdata, NewTask } from '@/app/Components/Send'
 
 const Extra = () => {
+  const count = useAuthStore((s) => s.count)
     const setcount = useAuthStore((s) => s.setcount)
     const temptask = useAuthStore((s) => s.temp_task)
     const settemptask = useAuthStore((s) => s.setTempTask)
@@ -28,7 +29,7 @@ const Extra = () => {
         }
           const result = await NewTask(data) 
           if (result.message !== '') {
-          setcount(1)
+          setcount(count  === 0 ? 1 : 0)
                 data.Task = ''
             data.Date = ''
             settempdate('')
