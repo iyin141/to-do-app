@@ -6,8 +6,8 @@ import { useAuthStore } from '../Values'
 
 const info = [{ percent: '90', task: 'Get food this afternoon', date: '2025-08-23T14:07' },
   { percent: '92', task: 'Get food this afternoon', date: '2025-08-23T14:07' },
-  { percent: '96', task: 'Get food this afternoon', date: '2025-08-23T14:07' },
-  { percent: '95', task: 'Get food this afternoon', date: '2025-08-23T14:07' },
+  { percent: '96', task: 'Get stuff later today', date: '2025-05-3T14:27' },
+  { percent: '95', task: 'Go to the gym', date: '2025-08-23T14:07' },
 ]
 
 const Template = () => {
