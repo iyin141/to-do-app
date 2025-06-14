@@ -28,7 +28,7 @@ const Nav = () => {
       <span className='w-[100vw] border-b  border-[#E6E7E9]'></span>
       <div className='flex pl-12 pr-12 max-sm:pl-0 max-sm:pr-4 justify-between '>
         <div>
-          <Image src={logo} alt='' className='w-[4rem] pl-4 ' />
+          <Image src={logo} alt='' className='w-[5rem] max-sm:w-[5rem] pl-4 ' />
         </div>
         <div className={`${middile} ${show ? '' : 'max-sm:hidden'}`}>
           <a href="#" className={`${resstyle}`}>Templates</a>

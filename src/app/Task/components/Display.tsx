@@ -1,8 +1,9 @@
 import React, {  useEffect,useState } from 'react'
 import { useAuthStore } from '@/app/Components/Values'
-import { FetchTask } from '@/app/Components/Send'
+import { FetchTask} from '@/app/Components/Send'
 import More from './More'
 import Search from './Search'
+import Extra from './Extra'
 
 
 const Display = () => {
@@ -17,10 +18,12 @@ const Display = () => {
   const task = useAuthStore((s) => s.tasks_2)
   const count = useAuthStore((s) => s.count)
   const setcount = useAuthStore((s) => s.setcount)
+  const rehyrdated = useAuthStore((s) => s.rehydrated)
+  
   useEffect(() => {
-    if (count === 0) {
+    if (rehyrdated) {
       async function call() {
-    const result = await FetchTask(uid)
+        const result = await FetchTask(uid)
         if (result !== 'no data') {
           settask_2(result)
           setcount(1)
@@ -29,16 +32,18 @@ const Display = () => {
           setcount(1)
           settask_2([])
           setshow(true)
-         }
-       
+         }   
   }
   call()
-   }
-  }, [uid, count])
+    }
+ 
+  }, [uid, count,rehyrdated])
   
 
   return (
+    
     <div className='flex flex-col  xl:w-[80%] lg:w-[90%] gap-5 pb-5' >
+      <Extra />
       <h1 className='text-[1.2rem] font-bold text-[#607BFC]   '>Recents</h1>
       <div className=' flex flex-col gap-12  shadow-md bg-[#fcfcfc] h-contain border-1 border-[#F3EFEE]  pt-8 pl-8 pr-8 pb-12 overflow-hidden'>
         <div className='pl-[92%] max-sm:pl-[80%]'>

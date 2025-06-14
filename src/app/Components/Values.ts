@@ -4,14 +4,14 @@ import { persist } from "zustand/middleware";
 import { Formdata } from "./Send";
 
 type AuthStore = {
-  search:string
-  name:string
+  search: string;
+  name: string;
   uid: string;
   token: string;
   toggle: boolean;
   toggle_2: boolean;
   toggle_3: boolean;
-  tasks: Array<Formdata>;// not in use
+  tasks: Array<Formdata>; // not in use
   tasks_2: Array<Formdata>;
   count: number;
   count_2: number;
@@ -19,10 +19,11 @@ type AuthStore = {
   id: string;
   task_edit: string;
   date_edit: string;
+  temp_task: string;
+  temp_date: string;
   rehydrated: boolean;
-  setsearch: (search: string) => void
-  setRehydrated: (v: boolean) => void;
-  setname: (uid: string) => void;
+  setsearch: (search: string) => void;
+  setname: (name: string) => void;
   setUid: (uid: string) => void;
   setToken: (token: string) => void;
   settoggle: (toggle: boolean) => void;
@@ -36,13 +37,16 @@ type AuthStore = {
   setId: (id: string) => void;
   setTaskEdit: (task_edit: string) => void;
   setDateEdit: (date_edit: string) => void;
+  setTempTask: (temp_task: string) => void;
+  setTempDate: (temp_date: string) => void;
+  setRehydrated: (v: boolean) => void;
   logout: () => void;
 };
 
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
-      search:"",
+      search: "",
       name: "",
       uid: "",
       token: "",
@@ -57,22 +61,26 @@ export const useAuthStore = create<AuthStore>()(
       id: '',
       task_edit: '',
       date_edit: '',
-      setsearch:(search) => set ({search}),
-      setname:(name) => set({name}),
+      temp_task: '',
+      temp_date: '',
+      rehydrated: false,
+      setsearch: (search) => set({ search }),
+      setname: (name) => set({ name }),
       setUid: (uid) => set({ uid }),
       setToken: (token) => set({ token }),
       settoggle: (toggle) => set({ toggle }),
       settoggle_2: (toggle_2) => set({ toggle_2 }),
       settoggle_3: (toggle_3) => set({ toggle_3 }),
       settasks: (newTasks) => set((state) => ({ tasks: [...state.tasks, ...newTasks] })), // not in use
-      settasks_2: (tasks_2) => set({tasks_2}),
+      settasks_2: (tasks_2) => set({ tasks_2 }),
       setcount: (count) => set({ count }),
       setcount_2: (count_2) => set({ count_2 }),
       setresponse: (response) => set({ response }),
       setId: (id) => set({ id }),
       setTaskEdit: (task_edit) => set({ task_edit }),
       setDateEdit: (date_edit) => set({ date_edit }),
-      rehydrated: false,
+      setTempTask: (temp_task) => set({ temp_task }),
+      setTempDate: (temp_date) => set({ temp_date }),
       setRehydrated: (v) => set({ rehydrated: v }),
       logout: () =>
         set({
@@ -89,12 +97,13 @@ export const useAuthStore = create<AuthStore>()(
           id: '',
           task_edit: '',
           date_edit: '',
+          temp_task: '',
+         temp_date: '',
         }),
     }),
     {
       name: "auth-storage",
       onRehydrateStorage: () => (state) => {
-        // Custom flag to indicate rehydration has completed
         state?.setRehydrated?.(true);
       },
     }

@@ -25,7 +25,7 @@ const Home = () => {
      const result = await verify(token)
      if (result !== 'done' || token === '') {
        logout()
-       console.log(token)
+
      }
    }
      run()
