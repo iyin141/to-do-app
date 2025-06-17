@@ -9,7 +9,7 @@ export default async function NewTask(req:NextApiRequest,res:NextApiResponse) {
   res.status(405).json({ message: `Method ${req.method} Not Allowed` });
     }
      const data: Formdata = req.body;
-        const result = await Log_task(data.Task,data.Date,data.Uid)
+        const result = await Log_task(data.Task,data.Date,data.Uid,data.Category,data.Priority)
         res.json(result)
    
 }

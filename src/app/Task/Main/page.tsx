@@ -7,6 +7,9 @@ import { useEffect } from 'react'
 import Display from '../components/Display'
 import Form from '../components/Form'
 import Edit from '../components/Edit'
+import Nav from '../components/Nav'
+import Sidebar from '../components/Sidebar'
+import Rec from '../components/Rec'
 
 
 const Main = () => {
@@ -17,7 +20,6 @@ const Main = () => {
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
   const rehydrated = useAuthStore((s) => s.rehydrated)
-  const name = useAuthStore((s) => s.name)
   useEffect(() => {
     if (!rehydrated) return;
   async function check() {
@@ -38,17 +40,25 @@ const Main = () => {
  
 
   return (
-    <div className='relative pt-12 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 flex flex-col md:gap-12  items-center min-h-screen'>
+    <div className='  flex gap-[8px] bg-[#F6F7F9] '>
+      <div className='w-[18%] bg-white shadow-sm '>
+        <Sidebar />
+      </div>
+      <div className='relative w-[82%] bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
+      <div>
+        <Nav />
+      </div>
        <div className={`${toggle ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
         <Form />
       </div>
       <div className={`${toggle_2 ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
         <Edit />
       </div>
-      <div className={`${toggle || toggle_2 ? ' pt-12 w-[100%] flex flex-col justify-center items-center z-10 absolute gap-[5rem]   opacity-10 ' : '  w-[100%] flex flex-col justify-center items-center gap-12 '}`}>
-        <h1 className='font-extralight text-[1.2rem] tracking-wide text-[#607BFC]  '><span>Dashboard</span> <span  >/</span> <span className='font-medium text-black uppercase'>{name}</span></h1>
+        <div className={`${toggle || toggle_2 ? ' pt-12 w-[100%] flex flex-col justify-center items-center z-10 absolute gap-[5rem]   opacity-10 ' : '  w-[100%] flex flex-col justify-center items-center gap-12 '}`}>
+        <Rec />
         <Display />
       </div>
+    </div>
     </div>
   )
 }

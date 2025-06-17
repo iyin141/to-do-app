@@ -2,31 +2,39 @@
 import React from 'react'
 import Image from "next/image"
 import logo_2 from '../../img/logo_3.png'
-import { Inter } from 'next/font/google'
 import { useAuthStore } from '@/app/Components/Values'
 import Link from 'next/link'
+import Search from './Search'
+import { Josefin_Sans } from 'next/font/google'
 
-  const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '700'], // optional
-  variable: '--font-inter', // optional: for CSS variable usage
-})
+
+ const caprasimo = Josefin_Sans({
+    subsets: ['latin'],
+    display: 'swap',
+    weight: ['400'],
+  })
 
 
 const Nav = () => {
-  const logout = useAuthStore((s) => s.logout)
   const rehydrated = useAuthStore((s) => s.rehydrated); 
   const toggle = useAuthStore((s) => s.toggle)
   const toggle_2 = useAuthStore((s) => s.toggle_2)
+  const name = useAuthStore((s) => s.name)
+  const shortname = name[0] + name[name.length - 1]
+  
   if (!rehydrated) return null; 
   return (
     <div className={`${toggle || toggle_2 ? 'opacity-10' : ''}`}>
-       <div className="flex justify-between pb-5 items-center  gap-5 pt-5 md:pl-12 md:pr-12 max-sm:pl-8 max-sm:pr-8 max-sm:pb-8 shadow-sm " >
+       <div className="flex justify-around pb-5 items-center w-[100%]  gap-12 pt-5 md:pl-8 md:pr-8 max-sm:pl-8 max-sm:pr-8 max-sm:pb-8 " >
       <div >
-        <Link href='/'><Image src={logo_2} className="h-[25px] w-auto " alt="" /></Link>
+        <Link href='/'><Image src={logo_2} className="h-[20px] w-auto " alt="" /></Link>
       </div>
-      
-     <span className={` ${inter.className} pt-2   font-bold tracking-wide`}> <button onClick={() => logout()} >Logout</button></span>
+        <div > 
+           <Search />
+        </div>
+        <div className={`${caprasimo.className}`}>
+            <span ><h1 className='uppercase p-1 pt-2 tracking-wider border-1  h-auto w-[38px] text-[1.1rem] text-center rounded-[100%]'>{shortname}</h1>  </span>
+        </div>
     </div> 
     </div>
   )

@@ -18,8 +18,8 @@ const Search = () => {
     
   return (
       <div>
-          <form action="">
-              <input type="text" placeholder='Search for items here ' {...register('item')} className='border-1 border-[#e6e3e3] p-2 rounded-[5px] font-light w-[100%] text-[0.9rem]' />
+          <form action="" >
+              <input type="text" placeholder='Filter Tasks' {...register('item')} className='border-[1.5px] border-[#f3f0f0] bg-white h-[2rem] p-2 rounded-[10px] font-light w-[50vw] mx-auto text-[0.9rem]' />
           </form>
 
     </div>

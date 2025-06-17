@@ -124,13 +124,13 @@ export const verify = async (token:string): Promise<string>  => {
   }
 }
 
-export const Log_task = async (Task:string , Date:string,Uid:string ) => {
+export const Log_task = async (Task:string , Date:string,Uid:string ,Category:string,Priority:string) => {
   try {
     const db = getDatabase();
     const postListRef = ref(db, 'Tasklogs/' + Uid + '/' + 'Userlogs' );
     const newPostRef = push(postListRef);
     set(newPostRef, {
-      task:{Task,Date}
+      task:{Task,Date,Category,Priority}
 });
     return {message:'done'};
   }

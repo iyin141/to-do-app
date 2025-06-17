@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "../Verify/verify.css"
-import Nav from "./components/Nav";
+
 
  const inter = Inter({
   subsets: ['latin'],
@@ -24,7 +24,7 @@ export default function RootLayout({
   
   return (
       <div className={`${inter.className} antialiased`}>
-          <Nav />
+
           {children}
     </div>
     

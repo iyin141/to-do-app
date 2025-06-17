@@ -7,6 +7,8 @@ export type Formdata = {
   Date: string,
   Uid: string
   id: string;
+  Category: string;
+  Priority:string
 }
 
 

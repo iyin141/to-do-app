@@ -7,13 +7,17 @@ import { RemoveTask } from '@/app/Components/Send';
 type Values = {
   id: string,
   Task: string,
-  Date:string
+  Date: string,
+  Category: string,
+  Priority:string
 }
 
-const More: React.FC<Values> = ({ id, Task, Date }) => {
+const More: React.FC<Values> = ({ id, Task, Date,Category,Priority }) => {
   const settoggle_2 = useAuthStore((s) => s.settoggle_2)
   const settask_edit = useAuthStore((s) => s.setTaskEdit)
   const setdate_Edit = useAuthStore((s) => s.setDateEdit)
+  const setcategory = useAuthStore((s) => s.setCategory)
+  const setpriority = useAuthStore((s) => s.setPriority)
   const setid = useAuthStore((s) => s.setId)
 const setcount = useAuthStore((s) => s.setcount)
 const uid = useAuthStore((s) => s.uid)
@@ -31,7 +35,7 @@ const [Display, setDisplay] = useState(false)
           <button onClick={() =>  Display ? setDisplay(false) : setDisplay(true) }><MoreVertical /></button>
           <div className={`${toggle_3 ? 'pl-4' : 'hidden'}`}  >
               <div className={`${Display ? ' w-[65px] p-2 bg-[#E6E3E3] h-[60px] text-[1rem] flex flex-col  font-light   shadow-md  absolute' : 'hidden'}`}>
-          <h1 onClick={() => { setdate_Edit(Date); settask_edit(Task); setid(id); settoggle_2(true) }}>Edit</h1>
+          <h1 onClick={() => { setdate_Edit(Date); settask_edit(Task); setcategory(Category); setpriority(Priority); setid(id);  settoggle_2(true) }}>Edit</h1>
                <h1 onClick={() => { del(uid,id)  }}>Delete</h1>
               </div>
           </div>

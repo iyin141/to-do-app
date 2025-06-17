@@ -5,7 +5,7 @@ import { EditTask, Formdata } from "@/app/Components/Send"
 import { useAuthStore } from "@/app/Components/Values";
 import { X } from 'lucide-react';
 
-const fields = ["Task", "Date"] as const;
+const fields = ["Task", "Date","Category","Priority"] as const;
 
 const Edit = () => {
   const settask_edit = useAuthStore((s) => s.setTaskEdit)
@@ -14,6 +14,8 @@ const Edit = () => {
   const date_edit = useAuthStore((s) => s.date_edit)
   const settoggle_2 = useAuthStore((s) => s.settoggle_2)
   const setcount = useAuthStore((s) => s.setcount)
+  const Category = useAuthStore((s) => s.Category)
+  const priority = useAuthStore((s) => s.Priority)
   const id = useAuthStore((s) => s.id)
   const uid = useAuthStore((s) => s.uid)
    const now = new Date();
@@ -24,7 +26,9 @@ const Edit = () => {
   useEffect(() => {
   reset({
     Task: task_edit,
-    Date: date_edit
+    Date: date_edit,
+    Category: Category,
+    Priority:priority
   });
 }, [task_edit, date_edit, reset]);
 
@@ -53,7 +57,21 @@ const Edit = () => {
           {fields.map((field) => (
            <div key={field} className="flex flex-col gap-3 pb-8">
             <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"  type={field === 'Task' ? 'text' : 'datetime-local'} {...register(field, { required: `${field} is required` })}   placeholder={field === "Task" ? "Task" : "Date"} min={formatDateTime(now)}  />
+           <input className="font-bold text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[5px]"
+              type={
+                field === 'Date' ? 'datetime-local' :
+                field === 'Priority' ? 'number' :
+                'text'
+              }
+              placeholder={field === "Task" ? "Task" : field}
+              min={field === 'Date' ? formatDateTime(now) : undefined}
+              {...register(field, {
+                required: `${field} is required`,
+                ...(field === 'Priority' && {
+                  min: { value: 1, message: 'Minimum is 1' },
+                  max: { value: 5, message: 'Maximum is 5' },
+                })
+              })}/>
             {errors[field] && <p>{errors[field].message}</p>}
            </div>
           ))}

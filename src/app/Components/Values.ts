@@ -22,6 +22,8 @@ type AuthStore = {
   temp_task: string;
   temp_date: string;
   rehydrated: boolean;
+  Category: string;
+  Priority: string;
   setsearch: (search: string) => void;
   setname: (name: string) => void;
   setUid: (uid: string) => void;
@@ -40,6 +42,8 @@ type AuthStore = {
   setTempTask: (temp_task: string) => void;
   setTempDate: (temp_date: string) => void;
   setRehydrated: (v: boolean) => void;
+  setCategory: (category: string) => void;
+  setPriority: (priority: string) => void;
   logout: () => void;
 };
 
@@ -64,6 +68,8 @@ export const useAuthStore = create<AuthStore>()(
       temp_task: '',
       temp_date: '',
       rehydrated: false,
+      Category: '',
+      Priority: '',
       setsearch: (search) => set({ search }),
       setname: (name) => set({ name }),
       setUid: (uid) => set({ uid }),
@@ -82,6 +88,8 @@ export const useAuthStore = create<AuthStore>()(
       setTempTask: (temp_task) => set({ temp_task }),
       setTempDate: (temp_date) => set({ temp_date }),
       setRehydrated: (v) => set({ rehydrated: v }),
+      setCategory: (Category) => set({ Category }),
+      setPriority: (Priority) => set({ Priority }),
       logout: () =>
         set({
           uid: "",
@@ -98,7 +106,9 @@ export const useAuthStore = create<AuthStore>()(
           task_edit: '',
           date_edit: '',
           temp_task: '',
-         temp_date: '',
+          temp_date: '',
+          Category: '',
+          Priority: '',
         }),
     }),
     {
