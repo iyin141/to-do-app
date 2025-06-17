@@ -25,7 +25,9 @@ const Extra = () => {
             id: '',
             Task: temptask,
             Date: tempdate,
-            Uid: uid,
+      Uid: uid,
+      Category: '',
+            Priority:''
         }
           const result = await NewTask(data) 
           if (result.message !== '') {

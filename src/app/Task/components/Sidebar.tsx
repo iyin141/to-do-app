@@ -22,7 +22,7 @@ const Sidebar = () => {
         <span className='pt-[5px] lowercase text-[0.9rem] italic font-light'>hello</span>
         <span><h4 className='capitalize'>{name}</h4></span>
       </h1>
-      <div className='flex flex-col gap-6 self-start'>
+      <div className='flex flex-col gap-6 self-start pt-12'>
         <button className='text-left flex gap-2' > <span><LayoutGrid /></span> <span>Dashboard</span></button>
         <button className='text-left flex gap-2'> <span><Files /></span> <span>Templates</span></button>
         <button className='text-left flex gap-2'> <span><LogOut /></span> <span>Logout</span></button>
