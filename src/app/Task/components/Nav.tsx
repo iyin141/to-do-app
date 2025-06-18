@@ -26,7 +26,7 @@ const Nav = () => {
   if (!rehydrated) return null; 
   return (
     <div className={`${toggle || toggle_2 ? 'opacity-10' : ''}`}>
-       <div className="flex justify-around pb-5 items-center w-[100%]  md:gap-12 pt-5 md:pl-8 md:pr-8 max-sm:pl-4 max-sm:pr-4  " >
+       <div className="flex justify-between pb-5  items-center w-[100%]  md:gap-12 pt-5 md:pl-8  max-sm:pl-6 max-sm:pr-6  " >
       <div >
         <Link href='/'><Image src={logo_2} className="h-[20px] max-sm:h-[15px] w-auto " alt="" /></Link>
       </div>
