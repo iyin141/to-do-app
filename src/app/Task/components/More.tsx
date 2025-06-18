@@ -32,7 +32,7 @@ const [Display, setDisplay] = useState(false)
   }
   return (
       <div className='w-[5%] flex flex-col' onClick={()=> settoggle_3(true)} >
-          <button onClick={() =>  Display ? setDisplay(false) : setDisplay(true) }><MoreVertical /></button>
+          <button onClick={() =>  Display ? setDisplay(false) : setDisplay(true) } ><MoreVertical /></button>
           <div className={`${toggle_3 ? 'pl-4' : 'hidden'}`}  >
               <div className={`${Display ? ' w-[65px] p-2 bg-[#E6E3E3] h-[60px] text-[1rem] flex flex-col  font-light   shadow-md  absolute' : 'hidden'}`}>
           <h1 onClick={() => { setdate_Edit(Date); settask_edit(Task); setcategory(Category); setpriority(Priority); setid(id);  settoggle_2(true) }}>Edit</h1>

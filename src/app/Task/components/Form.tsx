@@ -51,7 +51,7 @@ const Login = () => {
     required: `${field} is required`,
     ...(field === 'Priority' && {
       min: { value: 1, message: 'Minimum is 1' },
-      max: { value: 5, message: 'Maximum is 5' },
+      max: { value: 3, message: 'Maximum is 3' },
     })
   })}/>
             {errors[field] && <p>{errors[field].message}</p>}

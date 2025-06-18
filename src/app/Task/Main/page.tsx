@@ -41,10 +41,10 @@ const Main = () => {
 
   return (
     <div className='  flex gap-[8px] bg-[#F6F7F9] '>
-      <div className='w-[18%] bg-white shadow-sm '>
+      <div className='w-[18%] bg-white shadow-sm max-lg:hidden '>
         <Sidebar />
       </div>
-      <div className='relative w-[82%] bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
+      <div className='relative lg:w-[82%] md:w-[100%]  bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
       <div>
         <Nav />
       </div>
@@ -54,7 +54,7 @@ const Main = () => {
       <div className={`${toggle_2 ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
         <Edit />
       </div>
-        <div className={`${toggle || toggle_2 ? ' pt-12 w-[100%] flex flex-col justify-center items-center z-10 absolute gap-[5rem]   opacity-10 ' : '  w-[100%] flex flex-col justify-center items-center gap-12 '}`}>
+        <div className={`${toggle || toggle_2 ? ' hidden  opacity-10 ' : '  w-[100%] flex flex-col pl-12 pr-12 gap-8 '}`}>
         <Rec />
         <Display />
       </div>
