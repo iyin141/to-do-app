@@ -6,7 +6,6 @@ import { useAuthStore } from '@/app/Components/Values'
 import Link from 'next/link'
 import Search from './Search'
 import { Josefin_Sans } from 'next/font/google'
-import { Menu, X } from "lucide-react";
 import { LayoutGrid } from "lucide-react";
 import { Files } from "lucide-react";
 import { LogOut } from "lucide-react";
