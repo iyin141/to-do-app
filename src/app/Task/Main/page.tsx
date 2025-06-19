@@ -54,7 +54,7 @@ const Main = () => {
       <div className={`${toggle_2 ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
         <Edit />
       </div>
-        <div className={`${toggle || toggle_2 ? ' hidden  opacity-10 ' : '  w-[100%] flex flex-col pl-12 pr-12 gap-8 '}`}>
+        <div className={`${toggle || toggle_2 ? ' hidden  opacity-10 ' : '  w-[100%] flex flex-col md:pl-12 md:pr-12 max-sm:pl-4 max-sm:pr-4 gap-8 '}`}>
         <Rec />
         <Display />
       </div>
