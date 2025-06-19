@@ -44,7 +44,7 @@ const Main = () => {
       <div className='w-[18%] bg-white shadow-sm max-lg:hidden '>
         <Sidebar />
       </div>
-      <div className='relative lg:w-[82%] md:w-[100%]  bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
+      <div className='relative lg:w-[82%] md:w-[100%] max-sm:w-[100%] bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
       <div>
         <Nav />
       </div>
