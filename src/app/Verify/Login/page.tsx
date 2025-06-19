@@ -46,7 +46,7 @@ const Login = () => {
       <div className="pb-3">
         <Link href="/"><Image src={logo_2} className="w-[4rem]" alt="" /></Link>
       </div>
-      <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-8 border-r-2  border-[#607BFC] shadow-xl rounded-[5px] w-[100%] md:w-[60%] lg:w-[40%] xl:w-[35%] ">
+      <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-8 border-t-2  border-[#607BFC] shadow-xl rounded-[5px] w-[100%] md:w-[60%] lg:w-[40%] xl:w-[35%] ">
         <h1 className="font-light text-[1rem]"><span className="text-[#607BFC]">Home</span> / Login</h1>
         <div className="pb-3">
           <h1 className="font-medium text-[1.2rem] pb-2">Login</h1>

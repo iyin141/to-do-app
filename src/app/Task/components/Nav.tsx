@@ -28,7 +28,7 @@ const Nav = () => {
     <div className={`${toggle || toggle_2 ? 'opacity-10' : ''}`}>
        <div className="flex justify-between pb-5  items-center w-[100%]  md:gap-12 pt-5 md:pl-8  max-sm:pl-6 max-sm:pr-6  " >
       <div >
-        <Link href='/'><Image src={logo_2} className="h-[20px] max-sm:h-[15px] w-auto " alt="" /></Link>
+        <Link href='/'><Image src={logo_2} className="w-[5rem] max-sm:w-[4rem] " alt="" /></Link>
       </div>
         <div > 
            <Search />

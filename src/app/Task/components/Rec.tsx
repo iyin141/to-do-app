@@ -24,7 +24,7 @@ const Rec = () => {
         {Categories.map((cat) => {
           const Icon = cat.icon
           return (
-            <div key={cat.name} className={` ${cat.hover} ' max-sm:mt-2 group flex pt-3 pb-3 pl-4 border-1 border-[#c2c5c7] w-[25vw] max-sm:w-[40vw] rounded-[10px] gap-2 '`}>
+            <div key={cat.name} className={` ${cat.hover} ' max-sm:mt-2 group flex pt-3 pb-3 pl-4 border-1 border-[#c2c5c7] w-[25vw] max-sm:w-[35vw] rounded-[10px] gap-2 '`}>
              <Icon className={`${cat.color} group-hover:text-white `} size={21} /> 
             <h1>{cat.name}</h1>
           </div>
