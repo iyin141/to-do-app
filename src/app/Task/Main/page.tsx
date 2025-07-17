@@ -1,66 +1,121 @@
 'use client'
-import { useAuthStore } from '@/app/Components/Values'
-import React from 'react'
-import { verify } from '@/app/Components/Send'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import Display from '../components/Display'
-import Form from '../components/Form'
-import Edit from '../components/Edit'
-import Nav from '../components/Nav'
-import Sidebar from '../components/Sidebar'
-import Rec from '../components/Rec'
+import * as React from 'react';
 
 
-const Main = () => {
-  
-  const toggle_2 = useAuthStore((s) => s.toggle_2)
-  const toggle = useAuthStore((s) => s.toggle)
-  const token = useAuthStore((s) => s.token)
-  const logout = useAuthStore((s) => s.logout)
-  const router = useRouter()
-  const rehydrated = useAuthStore((s) => s.rehydrated)
-  useEffect(() => {
-    if (!rehydrated) return;
-  async function check() {
-   
-    if (token !== '') {
-    const result = await verify(token)
-      if (result !== 'done') {
-        router.push('/Verify/Login')
-        logout()
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Main from '../components/Main';
+import Sidebar from '../components/Sidebar';
+import Nav from '../components/Nav';
+
+
+
+
+
+
+export default function ResponsiveDrawer() {
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
+
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
+
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
     }
-    } else {
-      router.push('/Verify/Login')
-      logout()
-  }
-  }
-  check()
-  },[token,rehydrated])
- 
+  };
+
+  const drawer = (
+    <div className='bg-black h-[100vh] text-white'>
+      <Sidebar />
+    </div>
+  );
+
+
 
   return (
-    <div className='  flex gap-[8px] bg-[#F6F7F9] '>
-      <div className='w-[18%] bg-white shadow-sm max-lg:hidden '>
-        <Sidebar />
-      </div>
-      <div className='relative lg:w-[82%] md:w-[100%] max-sm:w-[100%] bg-[#F6F7F9] flex flex-col md:gap-12   min-h-screen'>
-      <div>
-        <Nav />
-      </div>
-       <div className={`${toggle ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
-        <Form />
-      </div>
-      <div className={`${toggle_2 ? 'z-20 absolute  text-center h-[100vh] w-[100%] bg-[#fcfcfc]  ' : 'hidden'}`}>
-        <Edit />
-      </div>
-        <div className={`${toggle || toggle_2 ? ' hidden  opacity-10 ' : '  w-[100%] flex flex-col md:pl-12 md:pr-12 max-sm:pl-4 max-sm:pr-4 gap-8 '}`}>
-        <Rec />
-        <Display />
-      </div>
-    </div>
-    </div>
-  )
-}
-
-export default Main
+    <Box >
+      <CssBaseline />
+      <AppBar
+        position="static"
+        sx={{
+          width: { xl: `84vw`, lg:'84vw' },
+          ml:{xl:`16vw`,lg:`16vw`},
+          boxShadow: 'none'
+        }}
+      >
+        <Toolbar sx={{ boxShadow: 'none' , bgcolor:'black'}}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { lg: 'none' } }}
+          >
+            <MenuIcon  />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div" className='  w-[100%] ' >
+          <Nav />
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: '16vw' }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+    
+        <Drawer
+          
+          variant="temporary"
+          open={mobileOpen}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
+          sx={{
+            display: { xs: 'block', lg: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '50vw' },
+          }}
+          slotProps={{
+            root: {
+              keepMounted: true, 
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: 'none', lg: 'block' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              borderRight: 'none', 
+              width: '16vw'
+            },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box component="main" className='bg-black'  sx={{ flexGrow: 1, width:{xl:'84vw' , lg:'100vw'}, ml:{xl:'16vw', lg:'16vw'} }}>
+        <Main />
+      </Box>
+    </Box>
+  );
+} 

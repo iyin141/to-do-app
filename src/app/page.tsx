@@ -6,7 +6,7 @@ import { useAuthStore } from './Components/Values';
 import { verify } from './Components/Send';
 import Main from './Components/Hero/page';
 import Template from './Components/Template/Template';
-
+import Five from './Components/Five';
   const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '700'], // optional
@@ -32,7 +32,7 @@ const Home = () => {
 }, [token]);
 
   return (
-    <div className={` ${inter.className}  overflow-x-hidden bg-[#FFFFFF]`}>
+    <div className={` ${inter.className}  overflow-x-hidden bg-black`}>
       <div className='  pb-12 flex flex-col w-[100%] md:gap-[8rem] max-sm:gap-12  '>
         <Nav />
         <div className='w-[99%]  flex justify-center lg:pt-[8%] md:pt-[12%]   '>
@@ -40,6 +40,9 @@ const Home = () => {
         </div>
         <div>
           <Template />
+        </div>
+        <div>
+          <Five />
         </div>
       </div> 
    </div>

@@ -21,11 +21,11 @@ const Template = () => {
           <h1 className='font-semibold text-[2.2rem] max-sm:text-center'>Templates</h1>
           <div className='w-[100%]  gap-8 items-center justify-center  flex flex-wrap '>
         {info.map((info) => (
-          <div key={info.percent} className='md:w-[28%] max-sm:w-[75%]   border-1 border-[#d3d1d1] mt-5 shadow-md p-4 h-[250px] justify-center pb-4 rounded-[10px] flex flex-col gap-6'>
-            <h1><span className='text-[#582066] font-semibold text-[2rem]'>{info.percent}</span> <span className='text-[#919090]'>% of users have this task</span></h1>
-            <h2 className='text-[1.2rem] max-sm:text-[1rem] text-[#363C46] font-bold'>{info.task}</h2>
-            <p className='text-[#9a9ca0] text-[1rem] font-light'>{info.date}</p>
-            <button className='self-start pt-4 text-[#9a9ca0] hover:text-black hover:mt-1 text-[1rem]' onClick={() => { setdate(info.date); settask(info.task) } }><Link href={token == '' ? 'Verify/Signup' : 'Verify/Login'}>Add now</Link></button>
+          <div key={info.percent} className='md:w-[28%] max-sm:w-[75%]     mt-5 shadow-md p-4 h-[250px] justify-center pb-4 rounded-[10px] flex flex-col gap-6 bg-[#0F0F0F] text-[#8e8a8a]'>
+            <h1><span className='text-white font-semibold text-[2rem]'>{info.percent}</span> <span className=''>% of users have this task</span></h1>
+            <h2 className='text-[1.2rem] max-sm:text-[1rem]  font-bold'>{info.task}</h2>
+            <p className=' text-[1rem] font-light'>{info.date}</p>
+            <button className='self-start pt-4  hover:text-black hover:mt-1 text-[1rem]' onClick={() => { setdate(info.date); settask(info.task) } }><Link href={token == '' ? 'Verify/Signup' : 'Verify/Login'}>Add now</Link></button>
           </div>
              ))}
           </div>

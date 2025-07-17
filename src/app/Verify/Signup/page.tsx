@@ -1,14 +1,14 @@
 "use client"
 import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form"
-import logo_2 from "../../img/logo_3.png"
-import Image from "next/image"
-import Link from "next/link"
 import { Create } from "@/app/Components/Send"
 import { useState } from "react"
 import { useAuthStore } from "@/app/Components/Values"
 import { useRouter } from 'next/navigation'
 import { Formdata } from "@/app/Components/Send"
+import Link from "next/link";
+import Image from "next/image";
+import sign from '../../../../public/img/signup.png'
 
 const fields = ["Firstname","Lastname","Email", "Password"] as const;
 
@@ -40,36 +40,43 @@ const Signup = () => {
     reset();
   }
   return (
-    <div className="md:pl-12 md:pr-12 pt-6 pb-6 flex flex-col justify-center items-center  gap-5  ">
-      <div className="pb-3">
-        <Link href="/"><Image src={logo_2} className="w-[4rem]" alt="" /></Link>
+    <div className=" flex justify-between">
+      <div className="w-[50%] max-lg:hidden">
+           <Image src={sign} className="w-[100%] h-[100vh]" alt="" />
       </div>
-      <div className=" flex flex-col gap-5 pt-7 pl-7 pr-7 pb-7 border-t-2 border-[#607BFC] shadow-xl rounded-[5px] lg:w-[55%] md:w-[65%]">
-        <h1 className="font-light text-[1rem]"><span className="text-[#607BFC]">Home</span> / Sign up</h1>
-        <div className="pb-3">
-          <h1 className="font-medium text-[1.2rem] pb-2">Create an Account</h1>
-          <p className=" text-[0.8rem] text-[#5E6282]">Register your user info in the form below</p>
+      <div className="w-[50%] max-lg:w-[100%] flex justify-center pt-3 pb-3">
+        <div className="flex flex-col   bg-[rgba(36,35,35,0.3)] border-[#232323] border-1  w-[60%] h-[100%] max-lg:w-[80%] pl-5 pr-5 pt-5 pb-5 max-lg:pb-10 rounded-[10px] text-[#828080]">
+          <div className="text-[#cbc9c9] pb-10 flex gap-2 ">
+          <h1 className="font-semibold text-[16px] mt-[1px]"><Link href='/'>To-Do</Link></h1>
+           <span className="block border-r-1 max-lg:border-b-[1px] h-[15px] mt-[5px] border-white" ></span>
+          <span className="text-[#828080] text-[0.8rem] font-light mt-1">Embrace Productivity</span>
         </div>
-        <form onSubmit={handleSubmit(onsubmit)}  >
-         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 gap-x-6 pb-8  " >
-            {fields.map((field) => (
-           <div key={field} className="flex flex-col gap-3 pb-5">
-            <label className="font-bold text-[0.8rem] tracking-wide" htmlFor={field}>{field}</label>
-            <div className="flex relative w-[100%]">
-                <input className=" text-[0.8rem] tracking-wide border-1 p-3 w-[100%] rounded-[3px]" type={field === "Password" ? show ? 'text' : "password" : field === "Email" ? "email" : 'text'} {...register(field, { required: `${field} is required` })} placeholder={field === "Email" ? "Email" : "Click to show password"}  />
-                <button className={`${field === 'Password' ? 'absolute pt-3  max-sm:pl-[85%] md:pl-[90%] lg:pl-[86%] ' : 'hidden'}`} onClick={() => show ? setshow(false) : setshow(true)}> {show ? <Eye /> : <EyeOff />}</button>
-            </div>
-            {errors[field] && <p>{errors[field].message}</p>}
+
+        <div className="text-[#b3aeae] pb-8 flex flex-col gap-2 text-center">
+          <h1 className="font-semibold text-[2.1vw] max-lg:text-[1.5rem] ">Sign Up</h1>
+          <p className="text-[13px] font-semibold tracking-wide text-[#828080]">Currently Only supports pc and andriod</p>
+        </div>
+
+         <form onSubmit={handleSubmit(onsubmit)} className=" " >
+          {fields.map((field) => (
+           <div key={field} className="flex flex-col gap-3 pb-6 ">
+              <div className="flex relative w-[100%] ">
+                 <input className="font-light  text-white text-[0.8rem] tracking-wide  rounded-[5px] p-3 w-[100%] border-[#232323] border-1 " type={field === 'Email' ? 'text' : show ? 'text' : 'password'} {...register(field, { required: `${field} is required` })} placeholder={field} />
+               <button className={`${field === 'Password' ? 'absolute pt-3  max-sm:pl-[88%] md:pl-[90%] lg:pl-[90%]  ' : 'hidden'}`} onClick={() => show ? setshow(false) : setshow(true)}> {show ? <Eye className="text-[#828080]" size={20} /> : <EyeOff className="text-[#828080]" size={20} />}</button>
+             </div>
+            {errors[field] && <p className="text-[#828080] text-[0.8rem] ">{errors[field].message}</p>}
            </div>
           ))}
-          </div>
-          <p className="pb-5"> {text}</p>
-          <button className="text-center bg-[#4475F2] text-white w-[100%] pt-2 pb-2 rounded-[5px]" > Create Account </button>
-        </form>
+          <p className=""> {text}</p>
+        <button className="text-center bg-[white] text-black w-[100%]  pt-2 pb-2 rounded-[5px]" > Create Account </button>
+      </form>
+        
+         <div className="flex gap-5  text-[0.8rem] font-semibold tracking-wide text-[#828080] mt-auto max-xl:mt-5 ">
+          <h1 className="text-[#cbc9c9]">Have an account?</h1>
+          <Link href='Login/' className="underline">Login here</Link>
+        </div>
       </div>
-      <div>
-        <p className="pt-3"><span className="text-[0.8rem] text-[#5E6282]">Already Have an Account</span> <Link className=" underline text-[0.8rem] text-[#4475F2] " href='/Verify/Login'>Login here</Link> </p>
-      </div>
+        </div>
      </div>
   )
 }
