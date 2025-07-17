@@ -19,7 +19,6 @@ const Display = () => {
   const [show, setshow] = useState(false)
   const search = useAuthStore((s) => s.search)
   const settoggle_3 = useAuthStore((s) => s.settoggle_3)
-  const settoggle = useAuthStore((s) => s.settoggle)
   const uid = useAuthStore((s) => s.uid)
   const settask_2 = useAuthStore((s) => s.settasks_2)
   const task = useAuthStore((s) => s.tasks_2)
@@ -53,9 +52,7 @@ const Display = () => {
     <div className='flex flex-col  xl:w-[100%] lg:w-[100%] max-lg:w-[100%] gap-5 pb-5 ' >
       <Extra />
       <div className=' flex flex-col gap-12   h-contain    pt-8  pb-12 overflow-hidden'>
-        <div className='flex w-[100%] justify-between'>
-          <button className='  bg-[#1b1918]  pl-4 pr-4 pt-2 pb-2  text-center text-white rounded-[20px] ' onClick={() => { settoggle(true)}}> <span className='text-[1.3rem]'>+</span> Add Task</button>
-        </div>
+        
         <div className={`flex flex-col gap-8`}>
           {task.map((t) => {
             const ti = calctime(t.Date)

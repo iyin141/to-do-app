@@ -2,7 +2,8 @@
 import React from 'react'
 import { useAuthStore } from '@/app/Components/Values'
 import Filter from './Search'
-
+import Chip from '@mui/material/Chip';
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -25,12 +26,10 @@ const Nav = () => {
         <h1 className='font-normal text-[1rem] pt-1 tracking-wide'>Dashboard</h1>
         <div className='flex gap-3' > 
           <Filter />
-          <span className='bg-white border-1 border-r'></span>
-          <div className='flex gap-2'>
-            <h1 className=' pt-[3px] pl-[2px] h-[35px] w-[35px] flex justify-center bg-[#232323] text-[1.3rem] tracking-wider  rounded-[50%]  uppercase'>{shortname}</h1>
-            <h1>{name}</h1>
+          <span className='bg-white border-1 border-r h-[1.8rem] mt-1'></span>
+          <div className=''>
+            <Chip avatar={<Avatar>{shortname}</Avatar>} sx={{ backgroundColor: 'white', color: 'black', border: '1px solid #ccc' }} label={name} />
           </div>
-          
         </div>
     </div> 
     </div>

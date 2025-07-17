@@ -19,9 +19,10 @@ const Filter = () => {
     
   return (
       <div>
-          <form action="" className='flex bg-[#232323]   h-[2rem]  rounded-[40px] pr-2'>
-              <input type="text" placeholder='Search for Tasks' {...register('item')} className='pt-4 pb-4 pl-4 pr-4 font-light max-sm:w-[100%] w-[12vw] mx-auto text-[0.9rem] focus:outline-none focus:ring-0' />
-              <span className='  pt-2 '><Search size={18} className='text-[#919180]' /></span>
+          <form action="" className='flex bg-[#232323] gap-2  h-[2.2rem] pl-2 rounded-[10px] pr-2'>
+              <span className='  pt-[8px] '><Search size={18} className='text-[#919180]' /></span>
+              <input type="text" placeholder='Search for Tasks' {...register('item')} className='pt-4 pb-4  pr-4 font-light max-sm:w-[100%] w-[25vw] mx-auto text-[0.9rem] focus:outline-none focus:ring-0' />
+              
           </form>
 
     </div>
