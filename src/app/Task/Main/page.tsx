@@ -41,7 +41,7 @@ export default function ResponsiveDrawer() {
   };
 
   const drawer = (
-    <div className='bg-black h-[100vh] text-white'>
+    <div className='bg-[#0E0D0C] h-[100vh] text-white'>
       <Sidebar />
     </div>
   );
@@ -49,23 +49,24 @@ export default function ResponsiveDrawer() {
 
 
   return (
-    <Box >
+    <Box className=' bg-[#0E0D0C] ' >
       <CssBaseline />
       <AppBar
         position="static"
         sx={{
           width: { xl: `84vw`, lg:'84vw' },
           ml:{xl:`16vw`,lg:`16vw`},
-          boxShadow: 'none'
+          boxShadow: 'none',
+          bgcolor: '#0E0D0C',
         }}
       >
-        <Toolbar sx={{ boxShadow: 'none' , bgcolor:'black'}}>
+        <Toolbar sx={{ boxShadow: 'none' , bgcolor:'#0E0D0C'} } >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { lg: 'none' } }}
+            sx={{ mr: 2, display: { lg: 'none' } , marginTop:{xs:'5px',sm:'0px'} }}
           >
             <MenuIcon  />
           </IconButton>
@@ -113,7 +114,7 @@ export default function ResponsiveDrawer() {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" className='bg-black'  sx={{ flexGrow: 1, width:{xl:'84vw' , lg:'100vw'}, ml:{xl:'16vw', lg:'16vw'} }}>
+      <Box component="main" className='bg-[#0C0E0F] rounded-b-[10px]'  sx={{ flexGrow: 1, width:{xl:'84vw' , lg:'84vw'}, ml:{xl:'16vw', lg:'16vw'} }}>
         <Main />
       </Box>
     </Box>

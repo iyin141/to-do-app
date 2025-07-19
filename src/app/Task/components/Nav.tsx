@@ -21,14 +21,14 @@ const Nav = () => {
   
   if (!rehydrated) return null; 
   return (
-    <div className={`${toggle || toggle_2 ? 'opacity-10' : ''} w-[100%] pt-5 pb-5`}>
-      <div className="flex justify-between items-center w-full px-4  " >
-        <h1 className='font-normal text-[1rem] pt-1 tracking-wide'>Dashboard</h1>
+    <div className={`${toggle || toggle_2 ? 'opacity-10' : ''} w-[100%] pt-5 pb-5 md:pl-2 `}>
+      <div className="flex md:justify-between md:items-center w-full max-sm:flex-col max-sm:gap-3  " >
+        <h1 className='font-normal text-[1rem] pt-1 tracking-wide text-[#C4B8A0] max-sm:hidden'>Dashboard</h1>
         <div className='flex gap-3' > 
           <Filter />
-          <span className='bg-white border-1 border-r h-[1.8rem] mt-1'></span>
+          <span className=' border-[#272727] border-1 border-r h-[1.8rem] mt-1'></span>
           <div className=''>
-            <Chip avatar={<Avatar>{shortname}</Avatar>} sx={{ backgroundColor: 'white', color: 'black', border: '1px solid #ccc' }} label={name} />
+            <Chip avatar={<Avatar>{shortname}</Avatar>} sx={{ backgroundColor: '#161616', color: 'white', border: '1px solid #232323',paddingTop:'5px',paddingBottom:'5px' }} label={name} />
           </div>
         </div>
     </div> 

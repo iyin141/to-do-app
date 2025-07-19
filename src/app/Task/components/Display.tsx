@@ -3,7 +3,18 @@ import { useAuthStore } from '@/app/Components/Values'
 import { FetchTask} from '@/app/Components/Send'
 import More from './More'
 import Extra from './Extra'
-import { LuClock } from 'react-icons/lu';
+
+
+
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from '@chakra-ui/table'
 
 function calctime(Due:string) {
   const today = new Date()
@@ -15,16 +26,15 @@ const targetDate = new Date(Due)
 
 const Display = () => {
   const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const task_style = ' grid max-sm:grid-cols-[85%_10%] grid-cols-[94%_10%]  bg-[#262626] p-5 rounded-[10px] shadow-sm border-[#e6e3e3] gap-5    pr-2 '
   const [show, setshow] = useState(false)
   const search = useAuthStore((s) => s.search)
-  const settoggle_3 = useAuthStore((s) => s.settoggle_3)
   const uid = useAuthStore((s) => s.uid)
   const settask_2 = useAuthStore((s) => s.settasks_2)
   const task = useAuthStore((s) => s.tasks_2)
   const count = useAuthStore((s) => s.count)
   const setcount = useAuthStore((s) => s.setcount)
   const rehyrdated = useAuthStore((s) => s.rehydrated)
+      const settoggle = useAuthStore((s) => s.settoggle)
 
   
   useEffect(() => {
@@ -49,27 +59,46 @@ const Display = () => {
 
   return (
     
-    <div className='flex flex-col  xl:w-[100%] lg:w-[100%] max-lg:w-[100%] gap-5 pb-5 ' >
+    <div className='flex flex-col pl-3 pr-3 xl:w-[100%]  lg:w-[100%] max-lg:w-[100%] gap-5 pb-5 bg-[#161616] rounded-[5px] mt-5 ' >
       <Extra />
-      <div className=' flex flex-col gap-12   h-contain    pt-8  pb-12 overflow-hidden'>
+      <div className=' flex flex-col gap-3   h-contain   pb-12 overflow-hidden'>
+        <div className='flex justify-between pr-2'>
+          <h1 className='pl-2 text-[#c0bdbd] font-semibold text-[1.2rem] max-sm:pt-3'>All Tasks</h1>
+          <h1 className='text-[2rem] md:hidden' onClick={() => { settoggle(true) }}>+</h1>
+       </div>
+      <TableContainer>
+  <Table variant='simple' className='w-full text-white'>
+    <Thead>
+      <Tr className='text-[#c0bdbd] ' >
+        <Th className='text-left px-6 py-4 font-normal w-[30%]'>Task</Th>
+        <Th className='text-left px-6 py-4 font-normal w-[25%]'>Category</Th>
+        <Th className='text-left px-6 py-4 font-normal w-[20%]'>Date Due</Th>
+        <Th className='text-left px-6 py-4 font-normal w-[20%]'>Priority</Th>
         
-        <div className={`flex flex-col gap-8`}>
-          {task.map((t) => {
-            const ti = calctime(t.Date)
-            return (
-            <div key={t.id} className={ `${[...clean(String(t.Task))].some(char => clean(search).includes(char)) ? task_style : search === '' ? task_style : 'hidden'} `}>
-              <div className='flex justify-between flex-wrap md:gap-5  max-sm:gap-3 text-center pt-1  ' onClick={()=> settoggle_3(false)}>
-                  <h1 className='flex flex-col text-left max-lg:w-[100%]'><span className='text-[1.2rem] font-semibold'>{t.Task}</span> <span className='font-light text-[0.8rem]'>{t.Category}</span> </h1>
-                <h1 className='flex gap-2 pt-3'> <LuClock size={20} className='pt-[1px]'  /><span className={`${ti === 0 || ti < 0 ? 'hidden' : ''}`}>{ti} </span> {ti === 0 ? 'Today' : ti < 0 ? 'Task expired' : 'Days left'}</h1>
-                <h1 className='text-white font-bold text-[1.2rem]'>{t.Priority === '1' ? 'Low' :  t.Priority === '2' ? 'Meduim' : 'High'}</h1>
-              </div>
-              <div>
-                   <More id={t.id} Task={t.Task } Date={t.Date} Category={t.Category} Priority={t.Priority} />
-              </div>
-            </div>
-          )
-          } )}
-        </div>
+      </Tr>
+    </Thead>
+    <Tbody>
+      {task.map((t) => {
+        const ti = calctime(t.Date)
+       return (
+      <Tr key={t.id} className={ `${[...clean(String(t.Task))].some(char => clean(search).includes(char)) ? '' : search === '' ? '': 'hidden'} `} >
+           <Td className='text-left px-6 py-4 w-1/4'>{t.Task}</Td>
+           <Td className='text-left px-6 py-4 w-1/4'>{t.Category}</Td>
+           <Td className='text-left px-6 py-4 w-1/4'><span className={`${ti === 0 || ti < 0 ? 'hidden' : ''}`}>{ti} </span> {ti === 0 ? 'Today' : ti < 0 ? 'Task expired' : 'Days left'}</Td>
+          <Td className='text-left px-6 py-4 w-1/4'>{t.Priority === '1' ? 'Low' :  t.Priority === '2' ? 'Meduim' : 'High'}</Td>
+           <Td className='pt-1 pr-2'>
+              <More id={t.id} Task={t.Task } Date={t.Date} Category={t.Category} Priority={t.Priority} />
+           </Td>
+           
+      </Tr>
+      )
+    }
+      )}
+    </Tbody>
+  </Table>
+</TableContainer>
+
+
         <p className={`${show ? 'text-center font-light text-[1.2rem]' : 'hidden'}`}>Add a task to display here</p>
       </div>
     </div>
