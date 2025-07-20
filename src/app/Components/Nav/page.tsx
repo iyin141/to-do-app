@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import Image from "next/image"
-import logo from '../../img/logo_3.png'
 import Link from "next/link"
 import { Menu, X } from "lucide-react";
 import { Inter } from 'next/font/google'
@@ -28,7 +27,7 @@ const Nav = () => {
       <span className="block h-[1px] w-full bg-gradient-to-r from-black via-[#535151] to-black" />
       <div className='flex pl-12 pr-12 max-sm:pl-0 max-sm:pr-4 justify-between '>
         <div>
-          <Image src={logo} alt='' className='w-[7.5rem] pt-2 max-sm:pl-4 max-sm:w-[5.2rem]' />
+          <Image src='/img/logo_3.png' alt=''  width={120} height={40} className='w-[7.5rem] pt-2 max-sm:pl-4 max-sm:w-[5.2rem]' />
         </div>
         <div className={`${middile} ${show ? '' : 'max-sm:hidden'}`}>
           <a href="#" className={`${resstyle}`}>Templates</a>
