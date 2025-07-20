@@ -8,7 +8,7 @@ const Five = () => {
           <div className='flex justify-between max-lg:flex-col max-lg:gap-6'>
               <div className='w-[50%] max-lg:w-[100%] flex flex-col lg:items-start max-lg:text-center max-sm:items-start'>
                   <h1 className='font-semibold text-[2vw] pb-1 max-lg:text-[3vw] max-sm:text-[5vw]'>Subscribe to our newletter</h1>
-                  <p className='font-normal text-[#b3aeae]'>Take your first step towards your American dream!</p>
+
               </div>
               <div className='w-[50%] max-lg:w-[100%] flex flex-col lg:items-end mx-auto gap-2'>
                   <div className='flex max-sm:flex-col gap-2'>
