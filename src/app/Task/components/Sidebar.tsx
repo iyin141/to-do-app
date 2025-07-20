@@ -1,3 +1,4 @@
+'use client'
 import { useAuthStore } from '@/app/Components/Values'
 import React from 'react'
 import { LayoutDashboard,  FileText, LogOut, User } from 'lucide-react';
