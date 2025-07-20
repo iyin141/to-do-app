@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Montserrat } from 'next/font/google'
+
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
@@ -16,14 +16,9 @@ const info = [
   {header:'Tasks this month',value:'5',icon:CalendarTodayOutlinedIcon}
 ]
 
-const font = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500','600','700','800','900'],
-})
 const Stat = () => {
   return (
-    <div className={` ${font.className} flex justify-between gap-2 max-sm:flex-wrap`}>
+    <div className={`  flex justify-between gap-2 max-sm:flex-wrap`}>
       {info.map((i) => {    
    
         return (
