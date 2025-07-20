@@ -3,7 +3,7 @@ import { useAuthStore } from '@/app/Components/Values'
 import React from 'react'
 import { LayoutDashboard,  FileText, LogOut, User } from 'lucide-react';
 import Image from 'next/image';
-import logo from '../../img/logo_3.png'
+
 
 
 
@@ -22,7 +22,7 @@ const Sidebar = () => {
   return (
     <div className=' flex flex-col pl-2 pr-5 pt-5 pb-5   h-[100vh] gap-12 overflow-hidden '>
       <div className=''>
-        <Image src={logo} alt=';' className='w-[10rem] ' />
+        <Image src='/img/logo_3.png' width={120} height={40} alt=';' className='w-[10rem] ' />
       </div>
       <div className='flex flex-col  gap-2 '>
         <h1 className='font-semibold pl-4 '>Menu </h1>
