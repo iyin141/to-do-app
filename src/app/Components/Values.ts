@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 import { Formdata } from "./Send";
 
 type AuthStore = {
+  topcategory:string
   search: string;
   name: string;
   uid: string;
@@ -13,6 +14,8 @@ type AuthStore = {
   toggle_3: boolean;
   tasks: Array<Formdata>; // not in use
   tasks_2: Array<Formdata>;
+  task_missed: number;
+  task_month: number;
   count: number;
   count_2: number;
   response: string;
@@ -24,6 +27,7 @@ type AuthStore = {
   rehydrated: boolean;
   Category: string;
   Priority: string;
+  settopcategory:(topcategory:string) => void
   setsearch: (search: string) => void;
   setname: (name: string) => void;
   setUid: (uid: string) => void;
@@ -35,6 +39,8 @@ type AuthStore = {
   settasks_2: (tasks_2: Array<Formdata>) => void;
   setcount: (count: number) => void;
   setcount_2: (count_2: number) => void;
+  settask_missed: (task_missed: number) => void;
+  settask_month: (task_month: number) => void;
   setresponse: (response: string) => void;
   setId: (id: string) => void;
   setTaskEdit: (task_edit: string) => void;
@@ -50,6 +56,8 @@ type AuthStore = {
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
+      task_month:0,
+      topcategory:'',
       search: "",
       name: "",
       uid: "",
@@ -61,6 +69,7 @@ export const useAuthStore = create<AuthStore>()(
       tasks_2: [],
       count: 0,
       count_2: 0,
+      task_missed:0,
       response: '',
       id: '',
       task_edit: '',
@@ -70,6 +79,7 @@ export const useAuthStore = create<AuthStore>()(
       rehydrated: false,
       Category: '',
       Priority: '',
+      settopcategory:(topcategory) => set({topcategory}),
       setsearch: (search) => set({ search }),
       setname: (name) => set({ name }),
       setUid: (uid) => set({ uid }),
@@ -80,6 +90,8 @@ export const useAuthStore = create<AuthStore>()(
       settasks: (newTasks) => set((state) => ({ tasks: [...state.tasks, ...newTasks] })), // not in use
       settasks_2: (tasks_2) => set({ tasks_2 }),
       setcount: (count) => set({ count }),
+      settask_missed: (task_missed) => set({ task_missed }),
+     settask_month: (task_month) => set({task_month}),
       setcount_2: (count_2) => set({ count_2 }),
       setresponse: (response) => set({ response }),
       setId: (id) => set({ id }),
@@ -109,6 +121,7 @@ export const useAuthStore = create<AuthStore>()(
           temp_date: '',
           Category: '',
           Priority: '',
+          task_missed:0,
         }),
     }),
     {

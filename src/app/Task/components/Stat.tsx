@@ -5,16 +5,11 @@ import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import DoDisturbOutlinedIcon from '@mui/icons-material/DoDisturbOutlined';
-
+import { useAuthStore } from '@/app/Components/Values';
 
  
 
-const info = [
-  { header: 'All Tasks set', value: '2',icon:AssignmentOutlinedIcon },
-  { header: 'Total tasks missed', value: '3',icon:DoDisturbOutlinedIcon },
-  { header: 'Frequent Category', value: '4',icon:PieChartOutlineIcon },
-  {header:'Tasks this month',value:'5',icon:CalendarTodayOutlinedIcon}
-]
+
 
 const font = Montserrat({
   subsets: ['latin'],
@@ -22,6 +17,16 @@ const font = Montserrat({
   weight: ['400', '500','600','700','800','900'],
 })
 const Stat = () => {
+  const task = useAuthStore((s) => s.tasks_2)
+  const task_missed = useAuthStore((s) => s.task_missed)
+  const topcategory = useAuthStore((s) => s.topcategory)
+  const task_month = useAuthStore((s) => s.task_month)
+  const info = [
+  { header: 'All Tasks set', value:task.length ,icon:AssignmentOutlinedIcon },
+  { header: 'Total tasks missed', value: task_missed,icon:DoDisturbOutlinedIcon },
+  { header: 'Frequent Category', value:topcategory ,icon:PieChartOutlineIcon },
+  {header:'Tasks this month',value:task_month,icon:CalendarTodayOutlinedIcon}
+]
   return (
     <div className={` ${font.className} flex justify-between gap-2 max-sm:flex-wrap`}>
       {info.map((i) => {    
