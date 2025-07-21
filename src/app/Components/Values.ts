@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 import { Formdata } from "./Send";
 
 type AuthStore = {
-  topcategory:string
+  topcategory: string;
   search: string;
   name: string;
   uid: string;
@@ -27,7 +27,8 @@ type AuthStore = {
   rehydrated: boolean;
   Category: string;
   Priority: string;
-  settopcategory:(topcategory:string) => void
+  compname: string;
+  settopcategory: (topcategory: string) => void;
   setsearch: (search: string) => void;
   setname: (name: string) => void;
   setUid: (uid: string) => void;
@@ -50,14 +51,15 @@ type AuthStore = {
   setRehydrated: (v: boolean) => void;
   setCategory: (category: string) => void;
   setPriority: (priority: string) => void;
+  setCompname: (compname: string) => void;
   logout: () => void;
 };
 
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
-      task_month:0,
-      topcategory:'',
+      task_month: 0,
+      topcategory: '',
       search: "",
       name: "",
       uid: "",
@@ -69,7 +71,7 @@ export const useAuthStore = create<AuthStore>()(
       tasks_2: [],
       count: 0,
       count_2: 0,
-      task_missed:0,
+      task_missed: 0,
       response: '',
       id: '',
       task_edit: '',
@@ -79,7 +81,8 @@ export const useAuthStore = create<AuthStore>()(
       rehydrated: false,
       Category: '',
       Priority: '',
-      settopcategory:(topcategory) => set({topcategory}),
+      compname: '',
+      settopcategory: (topcategory) => set({ topcategory }),
       setsearch: (search) => set({ search }),
       setname: (name) => set({ name }),
       setUid: (uid) => set({ uid }),
@@ -90,9 +93,9 @@ export const useAuthStore = create<AuthStore>()(
       settasks: (newTasks) => set((state) => ({ tasks: [...state.tasks, ...newTasks] })), // not in use
       settasks_2: (tasks_2) => set({ tasks_2 }),
       setcount: (count) => set({ count }),
-      settask_missed: (task_missed) => set({ task_missed }),
-     settask_month: (task_month) => set({task_month}),
       setcount_2: (count_2) => set({ count_2 }),
+      settask_missed: (task_missed) => set({ task_missed }),
+      settask_month: (task_month) => set({ task_month }),
       setresponse: (response) => set({ response }),
       setId: (id) => set({ id }),
       setTaskEdit: (task_edit) => set({ task_edit }),
@@ -102,6 +105,7 @@ export const useAuthStore = create<AuthStore>()(
       setRehydrated: (v) => set({ rehydrated: v }),
       setCategory: (Category) => set({ Category }),
       setPriority: (Priority) => set({ Priority }),
+      setCompname: (compname) => set({ compname }),
       logout: () =>
         set({
           uid: "",
@@ -121,7 +125,8 @@ export const useAuthStore = create<AuthStore>()(
           temp_date: '',
           Category: '',
           Priority: '',
-          task_missed:0,
+          task_missed: 0,
+          compname: '',
         }),
     }),
     {
